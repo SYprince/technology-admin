@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--解决idea thymeleaf 表达式模板报红波浪线-->
+<!--suppress ALL -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- 引入公用部分 -->
+    <script th:replace="common/head::static"></script>
+    <!-- 样式 -->
+    <link th:href="@{/supply/pv/css/pvpower.css}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="layui-row layui-col-space15">
+    <!-- 操作表单 -->
+    <div class="layui-col-md12">
+        <div class="layui-card">
+            <div class="layui-card-header">水电电力预测历史数据</div>
+            <div class="layui-card-body">
+                <!-- 表格主体 -->
+                <table class="layui-hide" id="hydropowerTable" lay-filter="test"></table>
+
+            </div>
+        </div>
+        <div class="layui-card">
+            <div class="layui-card-header">水电电力预测</div>
+            <div class="layui-card-body">
+                <!-- 表格主体 预测结果 -->
+                <table class="layui-hide" id="forcastResult" lay-filter="forcastResult"></table>
+                <button class="layui-btn layui-btn-radius layui-btn-normal" id="forcast">预测</button>
+                <div id="main" style="width: 1000px;height:400px;"></div>
+                <!--<script type="text/html" id="toolbarforcast">
+                    <div class="layui-btn-container">-->
+                        <!--<button class="layui-btn layui-btn-radius layui-btn-normal" id="forcast">预测</button>-->
+                    <!--</div>
+                </script>-->
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+<!-- js -->
+
+<script th:src="@{/supply/hydro/js/hydropower.js}" type="module"></script>
+<!--<script th:src="@{/echart/echarts.min.js}" type="module"></script>-->
+<script type="text/javascript" th:inline="javascript">
+    /*<![CDATA[*/
+    $(function () {
+        let myChart = echarts.init(document.getElementById('main'));
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: 'ECharts 入门示例'
+            },
+            tooltip: {},
+            legend: {
+                data:['得分']
+            },
+            xAxis: {
+                data: ["哈登","杜兰特","戴维斯","詹姆斯","阿德托昆博","恩比德","利拉德","沃克","伦纳德","拉文"]
+            },
+            yAxis: {},
+            series: [{
+                name: '得分',
+                type: 'bar',
+                data: [30.6, 30.0, 28.2, 27.8, 27.6, 27.0,27.0,26.5,25.5,25.0]
+            }]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+        $("#forcast").click(function () {
+            $.ajax({
+                url: "/supply/solarMaxInput/forcast",
+                type: "POST",
+                data: "",//$("#degreeForm").serialize(),
+                success: function (data) {
+                    if (data) {
+                        layer.msg("操作成功")
+                        /*layer.confirm('操作成功!', {
+                            icon: 1,
+                            btn: ['确认']
+                            , btn1: function (index, layero) {
+                                parent.location.reload();
+                                parent.layer.closeAll();
+                            }
+                        });*/
+                    }
+                }
+            });
+        })
+    })
+
+    /*]]>*/
+</script>
+</html>
