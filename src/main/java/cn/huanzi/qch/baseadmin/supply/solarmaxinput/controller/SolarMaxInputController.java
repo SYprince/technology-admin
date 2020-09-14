@@ -32,13 +32,24 @@ public class SolarMaxInputController extends CommonController<SolarMaxInputVo, S
     }
     private static void pvpower() {
         RConnection rc = null;
-        String prefix = "";
-        String fileName = "E:\\solarFcst9rollingRes\\testRad.R";
+        String prefix = "E:\\solarFcst9rollingRes\\";
+        String fileName0 = "testRad.R";
+        String fileName1 = "collectRad.R";
+        String fileName2 = "testRealProcedure.R";
+        String fileName3 = "testDistAvgByRad.R";
+        String fileName4 = "testFinal.R";
         try {
             rc = new RConnection();
-            rc.assign("fileName", fileName);
+            //rc.assign("fileName0", prefix + fileName0);
+            //rc.assign("fileName1", prefix + fileName1);
+            //rc.assign("fileName2", prefix + fileName2);
+            //rc.assign("fileName3", prefix + fileName3);
+            //rc.assign("fileName4", prefix + fileName4);
+
             //执行test.R脚本，执行这一步才能调用里面的自定义函数myFunc，如果不行，就在R工具上也执行一下test.R脚本
-            rc.eval("source(fileName)");
+            //rc.eval("source('E://solarFcst9rollingRes/testRad.R')");
+            rc.eval("source('E://solarFcst9rollingRes/testDistAvgByRad.R')");
+            //rc.eval("source(fileName1)" +
             rc.close();
         } catch (RserveException e) {
             e.printStackTrace();

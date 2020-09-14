@@ -6,7 +6,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 @Entity
-@Table(name = "smhp_for_R_max")
+@Table(name = "smhp_for_r_max")
 @Data
 public class SmhpForRMax implements Serializable {
     private String date;//
