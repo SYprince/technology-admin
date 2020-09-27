@@ -23,6 +23,8 @@ public class SolarMaxInputController extends CommonController<SolarMaxInputVo, S
 
     @PostMapping("forcast")
     public String forcast(){
+        //1.调用r程序线程
+        //2.等待1线程结束 再开始执行将csv结果文件更新到库的线程
         System.out.println(123);
         return "success";
     }

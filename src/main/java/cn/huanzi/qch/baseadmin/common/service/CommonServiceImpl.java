@@ -62,7 +62,7 @@ public class CommonServiceImpl<V, E, T> implements CommonService<V, E, T> {
     public Result<List<V>> list(V entityVo) {
         List<E> entityList = commonRepository.findAll(Example.of(CopyUtil.copy(entityVo, entityClass)));
         List<V> entityModelList = CopyUtil.copyList(entityList, entityVoClass);
-        return Result.of(entityModelList);
+         return Result.of(entityModelList);
     }
 
     @Override

@@ -6,14 +6,19 @@ import java.util.Date;
 
 @Data
 public class SolarInputVo extends PageCondition implements Serializable {
-    private String doy;//
 
-    private Integer id;//
+    private Integer id;
 
-    private String power;//
+    private String power;
+    private String powerMax;//电力用的
 
-    private String radiation;//
+    private String maxtemp;//电力用的
 
-    private String timestamp;//
+    private String radiation;
+    private String radiationMax;//电力用的
+
+    private String timestamp;
+
+    private String doy;
 
 }

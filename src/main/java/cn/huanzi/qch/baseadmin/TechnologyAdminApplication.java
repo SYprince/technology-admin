@@ -1,5 +1,7 @@
 package cn.huanzi.qch.baseadmin;
 
+import cn.huanzi.qch.baseadmin.supply.smhpforr.pojo.SmhpForR;
+import cn.huanzi.qch.baseadmin.supply.smhpforr.repository.SmhpForRRepository;
 import cn.huanzi.qch.baseadmin.sys.sysmenu.vo.SysMenuVo;
 import cn.huanzi.qch.baseadmin.sys.syssetting.service.SysSettingService;
 import cn.huanzi.qch.baseadmin.sys.syssetting.vo.SysSettingVo;
@@ -25,11 +27,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.annotation.PostConstruct;
 import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -70,6 +75,30 @@ class IndexController {
     @Autowired
     private SysShortcutMenuService sysShortcutMenuService;
 
+    @Autowired
+    private SmhpForRRepository smhpForRRepository;
+
+    //@PostConstruct
+    public void contextLoads() {
+        List<SmhpForR> data = smhpForRRepository.findAll();
+
+        System.out.println(data.get(0).getId());
+        String filename = "123水电.csv";
+        String[] headers = {"日期","id","降雨量","电量值","电力值","年中位置","年份"};
+        String rootPath = "E://";
+
+        File file = new File(rootPath + filename);
+
+        try {
+            file.createNewFile();
+            CsvUtil.exportCSV(new FileWriter(file),headers,data);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }finally {
+
+        }
+
+    }
     /**
      * 端口
      */

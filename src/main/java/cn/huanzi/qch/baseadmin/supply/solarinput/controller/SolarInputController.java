@@ -18,4 +18,10 @@ public class SolarInputController extends CommonController<SolarInputVo, SolarIn
     public ModelAndView index(){
         return new ModelAndView("supply/pv/pvelec","","");
     }
+
+    @PostMapping("forcast")
+    public String forcast(){
+        System.out.println(123);
+        return "success";
+    }
 }

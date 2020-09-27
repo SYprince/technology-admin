@@ -23,8 +23,8 @@ public class WindInput implements Serializable {
 
     private String v;//
 
-    private String ws100;//
+    private String ws;//
 
-    private String ws100Max;//
+    private String wsMax;//
 
 }

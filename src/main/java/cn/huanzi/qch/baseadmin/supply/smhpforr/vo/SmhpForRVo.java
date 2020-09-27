@@ -13,7 +13,7 @@ public class SmhpForRVo extends PageCondition implements Serializable {
     private String rainfall;//
 
     private String smhp;//
-
+    private String smhpMax;//
     private String toy;//
 
     private String year;//

@@ -19,6 +19,8 @@ public class SmhpForR implements Serializable {
 
     private String smhp;//
 
+    private String smhpMax;//
+
     private String toy;//
 
     private String year;//

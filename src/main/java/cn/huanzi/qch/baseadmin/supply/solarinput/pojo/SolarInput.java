@@ -9,16 +9,21 @@ import java.util.Date;
 @Table(name = "solar_input")
 @Data
 public class SolarInput implements Serializable {
-    private String doy;//
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;//
+    private Integer id;
 
-    private String power;//
+    private String power;
+    private String powerMax;//电力用的
 
-    private String radiation;//
+    private String maxtemp;//电力用的
 
-    private String timestamp;//
+    private String radiation;
+    private String radiationMax;//电力用的
+
+    private String timestamp;
+
+    private String doy;
 
 }
