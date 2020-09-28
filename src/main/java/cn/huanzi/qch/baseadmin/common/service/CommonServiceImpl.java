@@ -12,6 +12,7 @@ import org.hibernate.annotations.NotFound;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.data.domain.Page;
 import org.springframework.util.StringUtils;
 
@@ -54,6 +55,19 @@ public class CommonServiceImpl<V, E, T> implements CommonService<V, E, T> {
             throw new RuntimeException("实体类" + entityVoClass.getName() + "未继承PageCondition。");
         }
         PageCondition pageCondition = (PageCondition) entityVo;
+        for (Field field : entityVo.getClass().getDeclaredFields()) {
+            //获取授权
+            field.setAccessible(true);
+            //属性名称
+            String fieldName = field.getName();
+            if("timestamp".equals(fieldName)){
+                try {
+                    field.get(entityVo);
+                } catch (IllegalAccessException e) {
+                    log.error(ErrorUtil.errorInfoToString(e));
+                }
+            }
+        }
         Page<E> page = commonRepository.findAll(Example.of(CopyUtil.copy(entityVo, entityClass)), pageCondition.getPageable());
         return Result.of(PageInfo.of(page, entityVoClass));
     }
