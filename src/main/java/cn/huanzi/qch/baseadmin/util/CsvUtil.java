@@ -1,11 +1,13 @@
 package cn.huanzi.qch.baseadmin.util;
 
+import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.lang.reflect.Field;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 /**
@@ -18,12 +20,25 @@ import java.util.List;
 public class CsvUtil<V> {
     public static void main(String[] args) throws IOException {
         FileWriter fw = new FileWriter("D:\\lalala55.txt");
-        FileReader fr = new FileReader("E:\\1234.txt");
-        int c =0;
-        while( (c=fr.read()) != -1){
-            fw.write(c);
+        CsvReader csvReader =  new CsvReader("E:\\solarFcst9rollingRes/quantileByDaily.csv",',',Charset.forName("GBK"));
+
+        ArrayList<String[]> csvList = new ArrayList<>();
+        //System.out.println(csvReader.readHeaders());
+        while (csvReader.readRecord()){
+            csvList.add(csvReader.getValues());
         }
-        fw.close();fr.close();
+
+        System.out.println(csvList.get(0)[1]);
+        //System.out.println(csvList.get(0)[1]);
+        //System.out.println((char)fr.read());
+        //System.out.println((char)fr.read());
+        //int c =0;
+        //while( (c=fr.read()) != -1){
+        //    //fw.write(c);
+        //    //System.out.println(c);
+        //}
+        fw.close();
+        csvReader.close();
     }
     public static<V> void exportCSV( Writer file , String[] headers, List<V> data) {
 

@@ -56,18 +56,66 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         , cellMinWidth: 80
     });
     //预测结果
-    forcastResult = table.render({
-        elem: '#forcastResult'
-        , toolbar: '#toolbarforcast'
-    });
-    //头工具栏事件
-    table.on('toolbar(forcastResult)', function (obj) {
-        switch (obj.event) {
-            case 'forcast': layer.msg("23");
-        }
-    })
+    // forcastResult = table.render({
+    //     elem: '#forcastResult'
+    //     , toolbar: '#toolbarforcast'
+    // });
+    // //头工具栏事件
+    // table.on('toolbar(forcastResult)', function (obj) {
+    //     switch (obj.event) {
+    //         case 'forcast': layer.msg("23");
+    //     }
+    // })
 
+    a();
+    //$("#forcast").click(function () {
+
+    let myChart = echarts.init(document.getElementById('main'));
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: 'ECharts 入门示例'
+        },
+        tooltip: {},
+        legend: {
+            data:['得分']
+        },
+        xAxis: {
+            data: ["哈登","杜兰特","戴维斯","詹姆斯","阿德托昆博","恩比德","利拉德","沃克","伦纳德","拉文"]
+        },
+        yAxis: {},
+        series: [{
+            name: '得分',
+            type: 'bar',
+            data: [30.6, 30.0, 28.2, 27.8, 27.6, 27.0,27.0,26.5,25.5,25.0]
+        }]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
 
 
 
 })
+function a() {
+
+        $.ajax({
+            url: "/supply/solarInput/forcast",
+            type: "POST",
+            data: "",//$("#degreeForm").serialize(),
+            success: function (data) {
+                if (data) {
+                    console.log(data);
+                    layer.msg("操作成功")
+                    layer.confirm('操作成功!', {
+                        icon: 1,
+                        btn: ['确认']
+                        , btn1: function (index, layero) {
+                            parent.location.reload();
+                            parent.layer.closeAll();
+                        }
+                    });
+                }
+            }
+        });
+}
