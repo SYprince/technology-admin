@@ -17,6 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -55,20 +56,28 @@ public class CommonServiceImpl<V, E, T> implements CommonService<V, E, T> {
             throw new RuntimeException("实体类" + entityVoClass.getName() + "未继承PageCondition。");
         }
         PageCondition pageCondition = (PageCondition) entityVo;
-        for (Field field : entityVo.getClass().getDeclaredFields()) {
-            //获取授权
-            field.setAccessible(true);
-            //属性名称
-            String fieldName = field.getName();
-            if("timestamp".equals(fieldName)){
-                try {
-                    field.get(entityVo);
-                } catch (IllegalAccessException e) {
-                    log.error(ErrorUtil.errorInfoToString(e));
-                }
-            }
-        }
-        Page<E> page = commonRepository.findAll(Example.of(CopyUtil.copy(entityVo, entityClass)), pageCondition.getPageable());
+
+        //try {
+        //    for (Field field : entityVo.getClass().getDeclaredFields()) {
+        //        //获取授权
+        //        field.setAccessible(true);
+        //        //属性名称
+        //        String fieldName = field.getName();
+        //        if("timestamp".equals(fieldName)){
+        //            log.info(field.get(entityVo).toString());
+        //            field.set(entityVo, field.get(entityVo).toString());
+        //        }
+        //    }
+        //} catch (IllegalAccessException e) {
+        //    log.error(ErrorUtil.errorInfoToString(e));
+        //}
+
+        ExampleMatcher exampleMatcher = ExampleMatcher.matching();
+        exampleMatcher = exampleMatcher.withMatcher("timestamp",ExampleMatcher.GenericPropertyMatchers.startsWith());
+
+        Example example = Example.of(CopyUtil.copy(entityVo, entityClass), exampleMatcher);
+
+        Page<E> page = commonRepository.findAll(example, pageCondition.getPageable());
         return Result.of(PageInfo.of(page, entityVoClass));
     }
 

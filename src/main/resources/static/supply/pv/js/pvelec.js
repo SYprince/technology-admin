@@ -11,8 +11,9 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
     let element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
     let laydate = layui.laydate;
     tree = layui.tree;
-    let height = document.documentElement.clientHeight - 160;
+    let height = document.documentElement.clientHeight - 60;
 let forcastDate = '2014/6';
+let chartData;
     //
     tableIns = table.render({
         elem: '#pvelecTable'
@@ -51,18 +52,62 @@ let forcastDate = '2014/6';
             , {field: 'radiation', title: '辐照度'}
             , {field: 'power', title: '发电量'}
             , {field: 'doy', title: '年中位置'}
-            , {fixed: 'right', title: '操作', toolbar: '#userTableBarDemo'}
+            //, {fixed: 'right', title: '操作', toolbar: '#userTableBarDemo'}
         ]]
         , defaultToolbar: ['', '', '']
         , page: true
         , height: height
         , cellMinWidth: 80
     });
-    //预测结果
-    // forcastResult = table.render({
-    //     elem: '#forcastResult'
-    //     , toolbar: '#toolbarforcast'
-    // });
+    //预测结果表格
+    forcastResult = table.render({
+        elem: '#forcastResult'
+        , url: ctx + '/supply/solarResult/page'
+        , method: 'POST'
+        , where : {
+            timestamp: forcastDate
+        }
+        //请求前参数处理
+        , request: {
+            pageName: 'page' //页码的参数名称，默认：page
+            , limitName: 'rows' //每页数据量的参数名，默认：limit
+        }
+        , response: {
+            statusName: 'flag' //规定数据状态的字段名称，默认：code
+            , statusCode: true //规定成功的状态码，默认：0
+            , msgName: 'msg' //规定状态信息的字段名称，默认：msg
+            , countName: 'records' //规定数据总数的字段名称，默认：count
+            , dataName: 'rows' //规定数据列表的字段名称，默认：data
+        }
+        //响应后数据处理
+        , parseData: function (res) { //res 即为原始返回的数据
+            var data = res.data;
+            return {
+                "flag": res.flag, //解析接口状态
+                "msg": res.msg, //解析提示文本
+                "records": data.records, //解析数据长度
+                "rows": data.rows //解析数据列表
+            };
+        }
+        , toolbar: '#toolbarforcast'
+        , cols: [[
+            {field: 'id', title: 'ID', hide: true}
+            , {field: 'timestamp', title: '日期'}
+            , {field: 'v1', title: 'v1'}
+            , {field: 'v2', title: 'v2'}
+            , {field: 'v3', title: 'v3'}
+            , {field: 'v4', title: 'v4'}
+            , {field: 'v5', title: 'v5'}
+            , {field: 'v6', title: 'v6'}
+            , {field: 'v7', title: 'v7'}
+            , {field: 'v8', title: 'v8'}
+            , {field: 'v9', title: 'v9'}
+        ]]
+        , defaultToolbar: ['', '', '']
+        , page: true
+        , height: height
+        , cellMinWidth: 80
+    });
     // //头工具栏事件
     // table.on('toolbar(forcastResult)', function (obj) {
     //     switch (obj.event) {
