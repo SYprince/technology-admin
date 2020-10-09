@@ -2,7 +2,7 @@
 // import * as echarts from "/static/echart/src/echarts";
 
 //let myChart = echarts.init(document.getElementById('main'));
-let tableIns;
+let forcastInput;
 let forcastResult;
 let tree;
 layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], function () {
@@ -16,7 +16,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
 let forcastDate = '2014/6';
 let chartData;
     //
-    tableIns = table.render({
+    forcastInput = table.render({
         elem: '#pvelecTable'
         , url: ctx + '/supply/solarInput/page'
         , method: 'POST'
@@ -136,25 +136,6 @@ let chartData;
     //$("#forcast").click(function () {
 
     let myChart = echarts.init(document.getElementById('main'));
-    // 指定图表的配置项和数据
-    // var option = {
-    //     title: {
-    //         text: 'ECharts 入门示例'
-    //     },
-    //     tooltip: {},
-    //     legend: {
-    //         data:['得分']
-    //     },
-    //     xAxis: {
-    //         data: ["哈登","杜兰特","戴维斯","詹姆斯","阿德托昆博","恩比德","利拉德","沃克","伦纳德","拉文"]
-    //     },
-    //     yAxis: {},
-    //     series: [{
-    //         name: '得分',
-    //         type: 'bar',
-    //         data: [30.6, 30.0, 28.2, 27.8, 27.6, 27.0,27.0,26.5,25.5,25.0]
-    //     }]
-    // };
     let option = {
         title: {
             text: '光伏电量分位数预测结果图',
@@ -345,6 +326,22 @@ let chartData;
 
 
 })
+//查询按钮
+function query(forcastDate) {
+    forcastInput.reload({
+        where:{timestamp : forcastDate}
+        ,page: {
+            curr: 1 //重新从第 1 页开始
+        }
+    })
+    forcastResult.reload({
+        where:{timestamp : forcastDate}
+        ,page: {
+            curr: 1 //重新从第 1 页开始
+        }
+    })
+    //刷新 图表
+}
 function a() {
 
         $.ajax({
