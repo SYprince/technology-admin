@@ -7,6 +7,7 @@ let forcastResult;
 let tree;
 layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], function () {
     let table = layui.table;
+    console.log('test', table);
     let form = layui.form;//select、单选、复选等依赖form
     let element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
     let laydate = layui.laydate;
@@ -136,23 +137,206 @@ let chartData;
 
     let myChart = echarts.init(document.getElementById('main'));
     // 指定图表的配置项和数据
-    var option = {
+    // var option = {
+    //     title: {
+    //         text: 'ECharts 入门示例'
+    //     },
+    //     tooltip: {},
+    //     legend: {
+    //         data:['得分']
+    //     },
+    //     xAxis: {
+    //         data: ["哈登","杜兰特","戴维斯","詹姆斯","阿德托昆博","恩比德","利拉德","沃克","伦纳德","拉文"]
+    //     },
+    //     yAxis: {},
+    //     series: [{
+    //         name: '得分',
+    //         type: 'bar',
+    //         data: [30.6, 30.0, 28.2, 27.8, 27.6, 27.0,27.0,26.5,25.5,25.0]
+    //     }]
+    // };
+    let option = {
         title: {
-            text: 'ECharts 入门示例'
+            text: '光伏电量分位数预测结果图',
+            top:'15px'
         },
-        tooltip: {},
+        tooltip: {
+            trigger: 'axis'
+        },
         legend: {
-            data:['得分']
+            data: ['预测结果1', '预测结果2', '预测结果3', '预测结果4', '预测结果5','预测结果6','预测结果7','预测结果8','预测结果9','实际结果']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
         },
         xAxis: {
-            data: ["哈登","杜兰特","戴维斯","詹姆斯","阿德托昆博","恩比德","利拉德","沃克","伦纳德","拉文"]
+            type: 'category',
+            boundaryGap: false,
+            data: ['1', '2', '3', '4', '5', '6', '7']
         },
-        yAxis: {},
-        series: [{
-            name: '得分',
-            type: 'bar',
-            data: [30.6, 30.0, 28.2, 27.8, 27.6, 27.0,27.0,26.5,25.5,25.0]
-        }]
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name: '预测结果1',
+                type: 'line',
+                stack: '总量',
+                data: [120, 132, 101, 134, 90, 230, 210],
+                lineStyle: {color:'blue'},
+                itemStyle: {
+                    normal: {
+                        color: "#386db3",//折线点的颜色
+                        lineStyle: {
+                            color: "#386db3"//折线的颜色
+                        }
+                    }
+                },
+            },
+            {
+                name: '预测结果2',
+                type: 'line',
+                stack: '总量',
+                data: [220, 182, 191, 234, 290, 330, 310],
+                lineStyle: {color:'blue'},
+                itemStyle: {
+                    normal: {
+                        color: "#386db3",//折线点的颜色
+                        lineStyle: {
+                            color: "#386db3"//折线的颜色
+                        }
+                    }
+                },
+            },
+            {
+                name: '预测结果3',
+                type: 'line',
+                stack: '总量',
+                data: [150, 232, 201, 154, 190, 330, 410],
+                lineStyle: {color:'blue'},
+                itemStyle: {
+                    normal: {
+                        color: "#386db3",//折线点的颜色
+                        lineStyle: {
+                            color: "#386db3"//折线的颜色
+                        }
+                    }
+                },
+            },
+            {
+                name: '预测结果4',
+                type: 'line',
+                stack: '总量',
+                data: [320, 332, 301, 334, 390, 330, 320],
+                lineStyle: {color:'blue'},
+                itemStyle: {
+                    normal: {
+                        color: "#386db3",//折线点的颜色
+                        lineStyle: {
+                            color: "#386db3"//折线的颜色
+                        }
+                    }
+                },
+            },
+            {
+                name: '预测结果5',
+                type: 'line',
+                stack: '总量',
+                data: [820, 932, 901, 934, 1290, 1330, 1320],
+                lineStyle:{color:'blue'},
+                itemStyle: {
+                    normal: {
+                        color: "#386db3",//折线点的颜色
+                        lineStyle: {
+                            color: "#386db3"//折线的颜色
+                        }
+                    }
+                },
+            },
+            {
+                name: '预测结果6',
+                type: 'line',
+                stack: '总量',
+                data: [822, 938, 909, 938, 1299, 1337, 1326],
+                lineStyle:{color:'blue'},
+                itemStyle: {
+                    normal: {
+                        color: "#386db3",//折线点的颜色
+                        lineStyle: {
+                            color: "#386db3"//折线的颜色
+                        }
+                    }
+                },
+            },
+            {
+                name: '预测结果7',
+                type: 'line',
+                stack: '总量',
+                data: [810, 922, 941, 914, 1260, 1300, 1300],
+                lineStyle:{color:'blue'},
+                itemStyle: {
+                    normal: {
+                        color: "#386db3",//折线点的颜色
+                        lineStyle: {
+                            color: "#386db3"//折线的颜色
+                        }
+                    }
+                },
+            },
+            {
+                name: '预测结果8',
+                type: 'line',
+                stack: '总量',
+                data: [800, 972, 981, 914, 1270, 1320, 1300],
+                lineStyle:{color:'blue'},
+                itemStyle: {
+                    normal: {
+                        color: "#386db3",//折线点的颜色
+                        lineStyle: {
+                            color: "#386db3"//折线的颜色
+                        }
+                    }
+                },
+            },
+            {
+                name: '预测结果9',
+                type: 'line',
+                stack: '总量',
+                data: [860, 992, 901, 913, 1266, 1310, 1360],
+                lineStyle:{color:'blue'},
+                itemStyle: {
+                    normal: {
+                        color: "#386db3",//折线点的颜色
+                        lineStyle: {
+                            color: "#386db3"//折线的颜色
+                        }
+                    }
+                },
+            },
+            {
+                name: '实际结果',
+                type: 'line',
+                stack: '总量',
+                data: [850, 955, 933, 922, 1288, 1300, 1340],
+                lineStyle:{color:'black'},
+                itemStyle: {
+                    normal: {
+                        color: "#000",//折线点的颜色
+                        lineStyle: {
+                            color: "#000"//折线的颜色
+                        }
+                    }
+                },
+            }
+        ]
     };
 
     // 使用刚指定的配置项和数据显示图表。
@@ -169,7 +353,7 @@ function a() {
             data: "",//$("#degreeForm").serialize(),
             success: function (data) {
                 if (data) {
-                    console.log(data);
+                    console.log('llllll', data);
                     layer.msg("操作成功")
                     layer.confirm('操作成功!', {
                         icon: 1,
