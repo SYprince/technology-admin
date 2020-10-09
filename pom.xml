@@ -42,13 +42,13 @@
         </dependency>
 
         <!--热部署工具dev-tools-->
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <optional>true</optional>
             <version>2.0.2.RELEASE</version>
             <scope>runtime</scope>
-        </dependency>
+        </dependency>-->
 
         <!-- security安全校验 -->
         <dependency>
@@ -75,6 +75,12 @@
             <version>8.0.13</version>
         </dependency>
 
+        <!-- 添加DBCP依赖 -->
+        <dependency>
+            <groupId>commons-dbcp</groupId>
+            <artifactId>commons-dbcp</artifactId>
+            <version>1.4</version>
+        </dependency>
         <!-- CopyUtil需要用到 -->
         <dependency>
             <groupId>commons-beanutils</groupId>
