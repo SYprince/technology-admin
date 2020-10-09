@@ -17,7 +17,13 @@
             <div class="layui-card-body">
                 <!-- 表格主体 -->
                 <table class="layui-hide" id="pvDataTable" lay-filter="test"></table>
-
+                <!-- 模板 -->
+                <script type="text/html" id="pvDataTableToolbarDemo">
+                    <div class="layui-btn-container">
+                        <input type="text" id="forcastDate" class="layui-input" style="width: 200px;display: inline">
+                        <button class="layui-btn layui-btn-sm" lay-event="query">查询</button>
+                    </div>
+                </script>
             </div>
         </div>
 
