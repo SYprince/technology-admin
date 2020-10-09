@@ -82,7 +82,10 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
     })
 
 //头工具栏事件
+
     table.on('toolbar(test)', function (obj) {
+        console.log('www',obj);
+        console.log('uuuu',table)
         switch (obj.event) {
             case 'query':
                 let forcastDate = $("#forcastDate").val();

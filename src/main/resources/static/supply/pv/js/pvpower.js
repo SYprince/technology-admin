@@ -12,7 +12,6 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
     let laydate = layui.laydate;
     tree = layui.tree;
     let height = document.documentElement.clientHeight - 160;
-
     //
     tableIns = table.render({
         elem: '#pvpowerTable'

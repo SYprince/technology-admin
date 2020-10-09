@@ -12,6 +12,9 @@
   border-bottom: 1px solid #eeeeee;
   padding-bottom: 5px;
 }
+#main{
+  margin-top:30px;
+}
 /*.layui-input, .layui-textarea {*/
 /*    display: block;*/
 /*    width: 100%;*/
