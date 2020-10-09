@@ -179,11 +179,16 @@ let chartData;
         },
         xAxis: {
             type: 'category',
+            name:'时段 （天）',
+            top: '50px',
+            right: '20px',
             boundaryGap: false,
             data: ['1', '2', '3', '4', '5', '6', '7']
         },
         yAxis: {
-            type: 'value'
+            type: 'value',
+            name:'发电量 （MW）',
+            left:'10px'
         },
         series: [
             {
