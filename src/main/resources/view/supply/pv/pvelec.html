@@ -14,21 +14,19 @@
     <div class="layui-col-md12">
         <div class="layui-card">
             <div class="layui-card-header">
-                <script type="text/html" id="pvDataTableToolbarSelect">
-                    <div class="pvSelectDiv">
+                <div class="pvSelectDiv">
                         <input type="text" class="layui-input pevlayui-input" id="forcastDate" style="width: 100px;">
-                        <button class="layui-btn  layui-btn-normal pvBtnBorder" lay-event="pvQuery">查询</button>
-                    </div>
+                        <button class="layui-btn  layui-btn-normal pvBtnBorder"  id="pvQuery">查询</button>
+                </div>
                     <button class="layui-btn  layui-btn-normal pvBtnBorder" id="forcast">预测</button>
-                </script>
             </div>
             <div class="layui-card-body">
                 <!-- 表格主体 -->
-                <table class="layui-hide" id="pvelecTable" lay-filter="pvInputDate"></table>
+                <table class="layui-hide" id="pvelecTable" ></table>
             </div>
             <div class="layui-card-body">
                 <!-- 表格主体 预测结果 -->
-                <table class="layui-hide" id="forcastResult1" lay-filter="forcastResult"></table>
+                <table class="layui-hide" id="forcastResult"></table>
 
                 <div id="main" style="width: 1000px;height:400px;"></div>
                 <!--<script type="text/html" id="toolbarforcast">
