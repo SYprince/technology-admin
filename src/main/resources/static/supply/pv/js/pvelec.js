@@ -14,7 +14,6 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
     let height = document.documentElement.clientHeight - 60;
 let forcastDate = '2014/6';
 let chartData;
-    //
     forcastInput = table.render({
         elem: '#pvelecTable'
         , url: ctx + '/supply/solarInput/page'
@@ -37,6 +36,7 @@ let chartData;
         //响应后数据处理
         , parseData: function (res) { //res 即为原始返回的数据
             var data = res.data;
+            console.log('输入数据', data);
             return {
                 "flag": res.flag, //解析接口状态
                 "msg": res.msg, //解析提示文本
@@ -82,6 +82,7 @@ let chartData;
         //响应后数据处理
         , parseData: function (res) { //res 即为原始返回的数据
             var data = res.data;
+            console.log('输出数据',data)
             return {
                 "flag": res.flag, //解析接口状态
                 "msg": res.msg, //解析提示文本
@@ -126,6 +127,19 @@ let chartData;
         }
     })
     let myChart = echarts.init(document.getElementById('main'));
+    let pvForcastTitle= ['预测结果1', '预测结果2', '预测结果3', '预测结果4', '预测结果5','预测结果6','预测结果7','预测结果8','预测结果9','实际结果'];
+    let seriesData = [{'timeInterval':['1', '2', '3', '4', '5', '6', '7']}, {'powerGeneration':[
+          [120, 132, 101, 134, 90, 230, 210],
+          [220, 182, 191, 234, 290, 330, 310],
+          [150, 232, 201, 154, 190, 330, 410],
+          [820, 932, 901, 934, 1290, 1330, 1320],
+          [822, 938, 909, 938, 1299, 1337, 1326],
+          [810, 922, 941, 914, 1260, 1300, 1300],
+          [800, 972, 981, 914, 1270, 1320, 1300],
+          [860, 992, 901, 913, 1266, 1310, 1360],
+          [850, 955, 933, 922, 1288, 1300, 1340],
+          [800, 900, 900, 900, 12800, 1300, 1300]
+        ]}];
     let option = {
         title: {
             text: ''
@@ -134,7 +148,7 @@ let chartData;
             trigger: 'axis'
         },
         legend: {
-            data: ['预测结果1', '预测结果2', '预测结果3', '预测结果4', '预测结果5','预测结果6','预测结果7','预测结果8','预测结果9','实际结果']
+            data: pvForcastTitle
         },
         grid: {
             top:'50px',
@@ -147,7 +161,7 @@ let chartData;
             type: 'category',
             name:'时段(天)',
             boundaryGap: false,
-            data: ['1', '2', '3', '4', '5', '6', '7']
+            data: seriesData[0].timeInterval
         },
         yAxis: {
             type: 'value',
@@ -155,158 +169,47 @@ let chartData;
             left:'10px'
         },
         series: [
-            {
-                name: '预测结果1',
-                type: 'line',
-                stack: '总量',
-                data: [120, 132, 101, 134, 90, 230, 210],
-                lineStyle: {color:'blue'},
-                itemStyle: {
-                    normal: {
-                        color: "#386db3",//折线点的颜色
-                        lineStyle: {
-                            color: "#386db3"//折线的颜色
-                        }
-                    }
-                },
-            },
-            {
-                name: '预测结果2',
-                type: 'line',
-                stack: '总量',
-                data: [220, 182, 191, 234, 290, 330, 310],
-                lineStyle: {color:'blue'},
-                itemStyle: {
-                    normal: {
-                        color: "#386db3",//折线点的颜色
-                        lineStyle: {
-                            color: "#386db3"//折线的颜色
-                        }
-                    }
-                },
-            },
-            {
-                name: '预测结果3',
-                type: 'line',
-                stack: '总量',
-                data: [150, 232, 201, 154, 190, 330, 410],
-                lineStyle: {color:'blue'},
-                itemStyle: {
-                    normal: {
-                        color: "#386db3",//折线点的颜色
-                        lineStyle: {
-                            color: "#386db3"//折线的颜色
-                        }
-                    }
-                },
-            },
-            {
-                name: '预测结果4',
-                type: 'line',
-                stack: '总量',
-                data: [320, 332, 301, 334, 390, 330, 320],
-                lineStyle: {color:'blue'},
-                itemStyle: {
-                    normal: {
-                        color: "#386db3",//折线点的颜色
-                        lineStyle: {
-                            color: "#386db3"//折线的颜色
-                        }
-                    }
-                },
-            },
-            {
-                name: '预测结果5',
-                type: 'line',
-                stack: '总量',
-                data: [820, 932, 901, 934, 1290, 1330, 1320],
-                lineStyle:{color:'blue'},
-                itemStyle: {
-                    normal: {
-                        color: "#386db3",//折线点的颜色
-                        lineStyle: {
-                            color: "#386db3"//折线的颜色
-                        }
-                    }
-                },
-            },
-            {
-                name: '预测结果6',
-                type: 'line',
-                stack: '总量',
-                data: [822, 938, 909, 938, 1299, 1337, 1326],
-                lineStyle:{color:'blue'},
-                itemStyle: {
-                    normal: {
-                        color: "#386db3",//折线点的颜色
-                        lineStyle: {
-                            color: "#386db3"//折线的颜色
-                        }
-                    }
-                },
-            },
-            {
-                name: '预测结果7',
-                type: 'line',
-                stack: '总量',
-                data: [810, 922, 941, 914, 1260, 1300, 1300],
-                lineStyle:{color:'blue'},
-                itemStyle: {
-                    normal: {
-                        color: "#386db3",//折线点的颜色
-                        lineStyle: {
-                            color: "#386db3"//折线的颜色
-                        }
-                    }
-                },
-            },
-            {
-                name: '预测结果8',
-                type: 'line',
-                stack: '总量',
-                data: [800, 972, 981, 914, 1270, 1320, 1300],
-                lineStyle:{color:'blue'},
-                itemStyle: {
-                    normal: {
-                        color: "#386db3",//折线点的颜色
-                        lineStyle: {
-                            color: "#386db3"//折线的颜色
-                        }
-                    }
-                },
-            },
-            {
-                name: '预测结果9',
-                type: 'line',
-                stack: '总量',
-                data: [860, 992, 901, 913, 1266, 1310, 1360],
-                lineStyle:{color:'blue'},
-                itemStyle: {
-                    normal: {
-                        color: "#386db3",//折线点的颜色
-                        lineStyle: {
-                            color: "#386db3"//折线的颜色
-                        }
-                    }
-                },
-            },
-            {
-                name: '实际结果',
-                type: 'line',
-                stack: '总量',
-                data: [850, 955, 933, 922, 1288, 1300, 1340],
-                lineStyle:{color:'black'},
-                itemStyle: {
-                    normal: {
-                        color: "#000",//折线点的颜色
-                        lineStyle: {
-                            color: "#000"//折线的颜色
-                        }
-                    }
-                },
-            }
         ]
     };
+    function pvEchart(seriesData, pvForcastTitle){
+        for(let i = 0;i<seriesData[1].powerGeneration.length;i++){
+            if(i <= seriesData[1].powerGeneration.length-1){
+                option.series.push({
+                    name: pvForcastTitle[i],
+                    type: 'line',
+                    stack: '总量',
+                    data: seriesData[1].powerGeneration[i],
+                    lineStyle: {color:'blue'},
+                    itemStyle: {
+                        normal: {
+                            color: "#386db3",//折线点的颜色
+                            lineStyle: {
+                                color: "#386db3"//折线的颜色
+                            }
+                        }
+                    }
+                });
+            }else {
+                    option.series.push({
+                        name: pvForcastTitle[i],
+                        type: 'line',
+                        stack: '总量',
+                        data: seriesData[1].powerGeneration[i],
+                        lineStyle: {color:'black'},
+                        itemStyle: {
+                            normal: {
+                                color: "#000000",//折线点的颜色
+                                lineStyle: {
+                                    color: "#000000"//折线的颜色
+                                }
+                            }
+                        }
+                })
+            }
+
+        }
+    }
+
 
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
@@ -331,6 +234,8 @@ let chartData;
                 }
                 forcastInput.reload(pvQuery);
                 forcastResult.reload(pvQuery);
+                pvEchart(seriesData, pvForcastTitle)
+                myChart.setOption(option);
                 $("#forcastDate").val(forcastDate);
                 break;
         }
