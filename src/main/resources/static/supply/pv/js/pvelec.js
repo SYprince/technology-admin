@@ -5,6 +5,7 @@
 let forcastInput;
 let forcastResult;
 let tree;
+let forcastDate = '2014/6';
 layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], function () {
     let table = layui.table;
     let form = layui.form;//select、单选、复选等依赖form
@@ -12,7 +13,6 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
     let laydate = layui.laydate;
     tree = layui.tree;
     let height = document.documentElement.clientHeight - 60;
-    let forcastDate = '2014/6';
     let chartData;
     let seriesData = [];
     forcastInput = table.render({
@@ -129,21 +129,10 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
     })
     let myChart = echarts.init(document.getElementById('main'));
     let pvForcastTitle = ['预测结果1', '预测结果2', '预测结果3', '预测结果4', '预测结果5', '预测结果6', '预测结果7', '预测结果8', '预测结果9', '实际结果'];
-    seriesData = [{'timeInterval': ['1', '2', '3', '4', '5', '6', '7']}, {
-        'powerGeneration': [
-            [120, 132, 101, 134, 90, 230, 210],
-            [220, 182, 191, 234, 290, 330, 310],
-            [150, 232, 201, 154, 190, 330, 410],
-            [820, 932, 901, 934, 1290, 1330, 1320],
-            [822, 938, 909, 938, 1299, 1337, 1326],
-            [810, 922, 941, 914, 1260, 1300, 1300],
-            [800, 972, 981, 914, 1270, 1320, 1300],
-            [860, 992, 901, 913, 1266, 1310, 1360],
-            [850, 955, 933, 922, 1288, 1300, 1340],
-            [800, 900, 900, 900, 12800, 1300, 1300]
-        ]
-    }];
-
+    let xAxisData=[];
+    for (let i=1;i<31;i++){
+        xAxisData.push(i)
+    }
     let option = {
         title: {
             text: ''
@@ -165,7 +154,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
             type: 'category',
             name: '时段(天)',
             boundaryGap: false,
-            data: seriesData[0].timeInterval
+            data: xAxisData
         },
         yAxis: {
             type: 'value',
@@ -176,47 +165,42 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
     };
 
     function pvEchart(seriesData, pvForcastTitle) {
+
         option.series = [];
-        for (let i = 0; i < seriesData[1].powerGeneration.length; i++) {
-            if (i < seriesData[1].powerGeneration.length - 1) {
-                option.series.push({
-                    name: pvForcastTitle[i],
-                    type: 'line',
-                    stack: '总量',
-                    data: seriesData[1].powerGeneration[i],
-                    lineStyle: {color: 'blue'},
-                    itemStyle: {
-                        normal: {
-                            color: "#386db3",//折线点的颜色
-                            lineStyle: {
-                                color: "#386db3"//折线的颜色
-                            }
+        for (let i = 1; i < 10; i++) {
+            option.series.push({
+                name: pvForcastTitle[i-1],
+                type: 'line',
+                stack: '总量',
+                data: seriesData['v'+i],
+                lineStyle: {color: 'blue'},
+                itemStyle: {
+                    normal: {
+                        color: "#386db3",//折线点的颜色
+                        lineStyle: {
+                            color: "#386db3"//折线的颜色
                         }
                     }
-                });
-            } else {
-                option.series.push({
-                    name: pvForcastTitle[i],
-                    type: 'line',
-                    stack: '总量',
-                    data: seriesData[1].powerGeneration[i],
-                    lineStyle: {color: 'black'},
-                    itemStyle: {
-                        normal: {
-                            color: "#000000",//折线点的颜色
-                            lineStyle: {
-                                color: "#000000"//折线的颜色
-                            }
-                        }
-                    }
-                })
-            }
-
+                }
+            });
         }
+        option.series.push({
+            name: pvForcastTitle[pvForcastTitle.length-1],
+            type: 'line',
+            stack: '总量',
+            data: seriesData['power'],
+            lineStyle: {color: 'black'},
+            itemStyle: {
+                normal: {
+                    color: "#000000",//折线点的颜色
+                    lineStyle: {
+                        color: "#000000"//折线的颜色
+                    }
+                }
+            }
+        })
     }
-
-    // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(option);
+    reloadEchart(forcastDate)
 
     //光伏电量查询事件
     $("#pvQuery").click(function () {
@@ -236,30 +220,16 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         }
         forcastInput.reload(pvQuery);
         forcastResult.reload(pvQuery);
-        getPvEachart(forcastDate);
+        reloadEchart(forcastDate);
     });
 
-    function getPvEachart(forcastDate) {
-        pvEchart(seriesData, pvForcastTitle)
-        myChart.setOption(option);
-        reloadEchart(forcastDate);
+    function reloadEchart(forcastDate) {
+        $.post("/supply/solarInput/echartdata",{forcastDate : forcastDate},function(data,status){
+            let eachatData = data.data;
+            pvEchart(eachatData, pvForcastTitle)
+            myChart.setOption(option);
+        });
     }
+    reloadEchart(forcastDate);
 })
 
-    function reloadEchart(forcastDate) {
-        $.ajax({
-            url: "/supply/solarInput/echartdata",
-            type: "POST",
-            data: {
-                forcastDate : forcastDate
-            },//$("#degreeForm").serialize(),
-            success: function (data) {
-                if (data) {
-                    if(data.flag){
-                        let data = data.data;
-                        //data.v1
-                    }
-                }
-            }
-        })
-    }
