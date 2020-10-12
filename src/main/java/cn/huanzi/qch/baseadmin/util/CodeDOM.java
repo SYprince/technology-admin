@@ -531,7 +531,7 @@ public class CodeDOM {
 
     public static void main(String[] args) {
         //String[] tables = {"sys_user","sys_menu","sys_authority","sys_user_menu","sys_user_authority","sys_shortcut_menu","sys_setting"};
-        String[] tables = {"solar_result"};
+        String[] tables = {"hp_result"};
         for (String table : tables) {
             String msg = new CodeDOM(table).create();
             System.out.println(msg);

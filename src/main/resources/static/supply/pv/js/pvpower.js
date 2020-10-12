@@ -15,7 +15,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
     //
     tableIns = table.render({
         elem: '#pvpowerTable'
-        , url: ctx + '/supply/solarMaxInput/page'
+        , url: ctx + '/supply/solarInput/page'
         , method: 'POST'
         //请求前参数处理
         , request: {
@@ -44,11 +44,11 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         , cols: [[
             {field: 'id', title: 'ID', hide: true}
             , {field: 'timestamp', title: '日期'}
-            , {field: 'radiation', title: '辐照度'}
-            , {field: 'power', title: '发电量'}
+            , {field: 'radiationMax', title: '辐照度'}
+            , {field: 'powerMax', title: '发电量'}
             , {field: 'maxtemp', title: '最大电力'}
             , {field: 'doy', title: '年中位置'}
-            , {fixed: 'right', title: '操作', toolbar: '#userTableBarDemo'}
+            //, {fixed: 'right', title: '操作', toolbar: '#userTableBarDemo'}
         ]]
         , defaultToolbar: ['', '', '']
         , page: true
@@ -67,7 +67,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         }
     })
 
+    ///////////🐖supply/solarResultMax/page
 
-
-
+    ///supply/solarInput/echartdataMax
 })

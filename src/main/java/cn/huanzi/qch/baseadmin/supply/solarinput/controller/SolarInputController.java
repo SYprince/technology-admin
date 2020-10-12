@@ -9,6 +9,9 @@ import cn.huanzi.qch.baseadmin.supply.solarinput.vo.SolarInputVo;
 import cn.huanzi.qch.baseadmin.supply.solarinput.service.SolarInputService;
 import cn.huanzi.qch.baseadmin.util.ErrorUtil;
 import com.csvreader.CsvReader;
+import com.jmatio.io.MatFileReader;
+import com.jmatio.types.MLArray;
+import com.jmatio.types.MLDouble;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -34,13 +37,25 @@ public class SolarInputController extends CommonController<SolarInputVo, SolarIn
     }
 
     /**
-     * echart十条线查询接口
+     * 光伏电量echart十条线查询接口
      */
     @PostMapping("echartdata")
     @Decrypt
     @Encrypt
-    public Result<Map<String,Set>> getEchartData(String forcastDate){
-        Map<String,Set> result = solarInputService.getEchartData(forcastDate);
+    public Result<Map<String,List>> getEchartData(String forcastDate){
+        Map<String,List> result = solarInputService.getEchartData(forcastDate);
+
+        return Result.of(result);
+    }
+
+    /**
+     * 光伏电力echart十条线查询接口
+     */
+    @PostMapping("echartdataMax")
+    @Decrypt
+    @Encrypt
+    public Result<Map<String,List>> echartdataMax(String forcastDate){
+        Map<String,List> result = solarInputService.getEchartDataMax(forcastDate);
 
         return Result.of(result);
     }
