@@ -5,12 +5,12 @@
 let forcastInput;
 let forcastResult;
 let tree;
-let forcastDate = '2014/6';
 layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], function () {
     let table = layui.table;
     let form = layui.form;//select、单选、复选等依赖form
     let element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
     let laydate = layui.laydate;
+    let forcastDate = '2014/6';
     tree = layui.tree;
     let height = document.documentElement.clientHeight - 60;
     let chartData;
@@ -128,44 +128,43 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         }
     })
     let myChart = echarts.init(document.getElementById('main'));
-    let pvForcastTitle = ['预测结果1', '预测结果2', '预测结果3', '预测结果4', '预测结果5', '预测结果6', '预测结果7', '预测结果8', '预测结果9', '实际结果'];
-    let xAxisData=[];
-    for (let i=1;i<31;i++){
-        xAxisData.push(i)
-    }
-    let option = {
-        title: {
-            text: ''
-        },
-        tooltip: {
-            trigger: 'axis'
-        },
-        legend: {
-            data: pvForcastTitle
-        },
-        grid: {
-            top: '50px',
-            left: '3%',
-            right: '4%',
-            bottom: '3%',
-            containLabel: true
-        },
-        xAxis: {
-            type: 'category',
-            name: '时段(天)',
-            boundaryGap: false,
-            data: xAxisData
-        },
-        yAxis: {
-            type: 'value',
-            name: '发电量(MW)',
-            left: '10px'
-        },
-        series: []
-    };
-
-    function pvEchart(seriesData, pvForcastTitle) {
-
+    //光伏电量分位数预测echart表
+    function pvEchart(seriesData) {
+        let pvForcastTitle = ['预测结果1', '预测结果2', '预测结果3', '预测结果4', '预测结果5', '预测结果6', '预测结果7', '预测结果8', '预测结果9', '实际结果'];
+        let xAxisData=[];
+        for (let i=1;i<31;i++){
+            xAxisData.push(i)
+        }
+        let option = {
+            title: {
+                text: ''
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: pvForcastTitle
+            },
+            grid: {
+                top: '50px',
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            xAxis: {
+                type: 'category',
+                name: '时段(天)',
+                boundaryGap: false,
+                data: xAxisData
+            },
+            yAxis: {
+                type: 'value',
+                name: '发电量(MW)',
+                left: '10px'
+            },
+            series: []
+        };
         option.series = [];
         for (let i = 1; i < 10; i++) {
             option.series.push({
@@ -199,9 +198,8 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
                 }
             }
         })
+        myChart.setOption(option);
     }
-    reloadEchart(forcastDate)
-
     //光伏电量查询事件
     $("#pvQuery").click(function () {
         let forcastDate = $("#forcastDate").val();
@@ -222,14 +220,14 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         forcastResult.reload(pvQuery);
         reloadEchart(forcastDate);
     });
-
+    //光伏电量数据表展示图数据加载
     function reloadEchart(forcastDate) {
         $.post("/supply/solarInput/echartdata",{forcastDate : forcastDate},function(data,status){
             let eachatData = data.data;
-            pvEchart(eachatData, pvForcastTitle)
-            myChart.setOption(option);
+            pvEchart(eachatData);
         });
     }
+    //初始化
     reloadEchart(forcastDate);
 })
 
