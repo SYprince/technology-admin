@@ -36,8 +36,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         }
         //响应后数据处理
         , parseData: function (res) { //res 即为原始返回的数据
-            var data = res.data;
-            console.log('输入数据', data);
+            let data = res.data;
             return {
                 "flag": res.flag, //解析接口状态
                 "msg": res.msg, //解析提示文本
@@ -82,8 +81,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         }
         //响应后数据处理
         , parseData: function (res) { //res 即为原始返回的数据
-            var data = res.data;
-            console.log('输出数据', data)
+            let data = res.data;
             return {
                 "flag": res.flag, //解析接口状态
                 "msg": res.msg, //解析提示文本
@@ -122,9 +120,6 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         , btns: ['confirm']
         , calendar: true  //公历节日
         , done: function (value, date, endDate) {
-            console.log(value); //得到日期生成的值，如：2017-08-18
-            console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
-            console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
         }
     })
     let myChart = echarts.init(document.getElementById('main'));
