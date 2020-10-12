@@ -239,7 +239,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         pvEchart(seriesData, pvForcastTitle)
         myChart.setOption(option);
         $.post( ctx + '/supply/solarInput/page',{timestamp: forcastDate},function(result){
-
+           console.log()
         });
     }
 
