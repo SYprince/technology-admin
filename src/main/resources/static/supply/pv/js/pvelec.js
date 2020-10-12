@@ -12,8 +12,9 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
     let laydate = layui.laydate;
     tree = layui.tree;
     let height = document.documentElement.clientHeight - 60;
-let forcastDate = '2014/6';
-let chartData;
+    let forcastDate = '2014/6';
+    let chartData;
+    let seriesData=[];
     forcastInput = table.render({
         elem: '#pvelecTable'
         , url: ctx + '/supply/solarInput/page'
@@ -61,7 +62,7 @@ let chartData;
     });
     //预测结果表格
     forcastResult = table.render({
-        elem: '#forcastResult1'
+        elem: '#forcastResult'
         , url: ctx + '/supply/solarResult/page'
         , method: 'POST'
         , where : {
@@ -90,7 +91,7 @@ let chartData;
                 "rows": data.rows //解析数据列表
             };
         }
-        , toolbar: '#pvDataTableToolbarSelect'
+        , toolbar: '#XX'
         , cols: [[
             {field: 'id', title: 'ID', hide: true}
             , {field: 'timestamp', title: '日期'}
@@ -128,7 +129,7 @@ let chartData;
     })
     let myChart = echarts.init(document.getElementById('main'));
     let pvForcastTitle= ['预测结果1', '预测结果2', '预测结果3', '预测结果4', '预测结果5','预测结果6','预测结果7','预测结果8','预测结果9','实际结果'];
-    let seriesData = [{'timeInterval':['1', '2', '3', '4', '5', '6', '7']}, {'powerGeneration':[
+    seriesData = [{'timeInterval':['1', '2', '3', '4', '5', '6', '7']}, {'powerGeneration':[
           [120, 132, 101, 134, 90, 230, 210],
           [220, 182, 191, 234, 290, 330, 310],
           [150, 232, 201, 154, 190, 330, 410],
@@ -140,6 +141,7 @@ let chartData;
           [850, 955, 933, 922, 1288, 1300, 1340],
           [800, 900, 900, 900, 12800, 1300, 1300]
         ]}];
+
     let option = {
         title: {
             text: ''
@@ -172,8 +174,9 @@ let chartData;
         ]
     };
     function pvEchart(seriesData, pvForcastTitle){
+        option.series=[];
         for(let i = 0;i<seriesData[1].powerGeneration.length;i++){
-            if(i <= seriesData[1].powerGeneration.length-1){
+             if(i < seriesData[1].powerGeneration.length-1){
                 option.series.push({
                     name: pvForcastTitle[i],
                     type: 'line',
@@ -189,7 +192,7 @@ let chartData;
                         }
                     }
                 });
-            }else {
+             }else {
                     option.series.push({
                         name: pvForcastTitle[i],
                         type: 'line',
@@ -205,57 +208,40 @@ let chartData;
                             }
                         }
                 })
-            }
+             }
 
         }
     }
-
-
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
 
     //光伏电量查询事件
-    table.on('toolbar(pvInputDate)', function (obj) {
-        switch (obj.event) {
-            case 'pvQuery':
-                let forcastDate = $("#forcastDate").val();
-                let pvQuery = {
-                    page: {
-                        curr: 1 //重新从第 1 页开始
-                    }
-                    , done: function (res, curr, count) {
-                        //完成后重置where，解决下一次请求携带旧数据
-                        this.where = {};
-                    }
-                };
-                if (forcastDate) {
-                    //设定异步数据接口的额外参数
-                    pvQuery.where = {timestamp: forcastDate};
-                }
-                forcastInput.reload(pvQuery);
-                forcastResult.reload(pvQuery);
-                //刷新图表
-                reloadEchart(forcastDate);
-
-                pvEchart(seriesData, pvForcastTitle)
-                myChart.setOption(option);
-                $("#forcastDate").val(forcastDate);
-                break;
-        }
-    });
-})
-function reloadEchart(forcastDate) {
-    $.ajax({
-        url: "/supply/solarInput/echartdata",
-        type: "POST",
-        data: {
-            forcastDate : forcastDate
-        },//$("#degreeForm").serialize(),
-        success: function (data) {
-            if (data) {
-                layer.msg("操作成功")
+    $("#pvQuery").click(function(){
+        let forcastDate = $("#forcastDate").val();
+        let pvQuery = {
+            page: {
+                curr: 1 //重新从第 1 页开始
             }
+            , done: function (res, curr, count) {
+                //完成后重置where，解决下一次请求携带旧数据
+                this.where = {};
+            }
+        };
+        if (forcastDate) {
+            //设定异步数据接口的额外参数
+            pvQuery.where = {timestamp: forcastDate};
         }
-    })
-}
+        forcastInput.reload(pvQuery);
+        forcastResult.reload(pvQuery);
+        getPvEachart(forcastDate);
+    });
+    function getPvEachart(forcastDate){
+        pvEchart(seriesData, pvForcastTitle)
+        myChart.setOption(option);
+        $.post( ctx + '/supply/solarInput/page',{timestamp: forcastDate},function(result){
 
+        });
+    }
+
+
+})
