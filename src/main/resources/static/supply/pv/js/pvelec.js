@@ -234,6 +234,9 @@ let chartData;
                 }
                 forcastInput.reload(pvQuery);
                 forcastResult.reload(pvQuery);
+                //刷新图表
+                reloadEchart(forcastDate);
+
                 pvEchart(seriesData, pvForcastTitle)
                 myChart.setOption(option);
                 $("#forcastDate").val(forcastDate);
@@ -241,3 +244,18 @@ let chartData;
         }
     });
 })
+function reloadEchart(forcastDate) {
+    $.ajax({
+        url: "/supply/solarInput/echartdata",
+        type: "POST",
+        data: {
+            forcastDate : forcastDate
+        },//$("#degreeForm").serialize(),
+        success: function (data) {
+            if (data) {
+                layer.msg("操作成功")
+            }
+        }
+    })
+}
+

@@ -1,28 +1,25 @@
 package cn.huanzi.qch.baseadmin.supply.solarinput.controller;
 
+import cn.huanzi.qch.baseadmin.annotation.Decrypt;
+import cn.huanzi.qch.baseadmin.annotation.Encrypt;
 import cn.huanzi.qch.baseadmin.common.controller.*;
-import cn.huanzi.qch.baseadmin.common.pojo.PageCondition;
-import cn.huanzi.qch.baseadmin.common.pojo.PageInfo;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
 import cn.huanzi.qch.baseadmin.supply.solarinput.pojo.SolarInput;
 import cn.huanzi.qch.baseadmin.supply.solarinput.vo.SolarInputVo;
 import cn.huanzi.qch.baseadmin.supply.solarinput.service.SolarInputService;
-import cn.huanzi.qch.baseadmin.util.CopyUtil;
 import cn.huanzi.qch.baseadmin.util.ErrorUtil;
 import com.csvreader.CsvReader;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 @Slf4j
 @RestController
@@ -36,6 +33,17 @@ public class SolarInputController extends CommonController<SolarInputVo, SolarIn
         return new ModelAndView("supply/pv/pvelec","","");
     }
 
+    /**
+     * echart十条线查询接口
+     */
+    @PostMapping("echartdata")
+    @Decrypt
+    @Encrypt
+    public Result<Map<String,Set>> getEchartData(String forcastDate){
+        Map<String,Set> result = solarInputService.getEchartData(forcastDate);
+
+        return Result.of(result);
+    }
     /**
      * 返回执行算法后更新后的数据
      * @return

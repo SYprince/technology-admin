@@ -50,7 +50,7 @@ public class SolarMaxInputController extends CommonController<SolarMaxInputVo, S
 
             //执行test.R脚本，执行这一步才能调用里面的自定义函数myFunc，如果不行，就在R工具上也执行一下test.R脚本
             //rc.eval("source('E://solarFcst9rollingRes/testRad.R')");
-            rc.eval("source('E://solarFcst9rollingRes/testDistAvgByRad.R')");
+            rc.eval("source('E://clear_R/solarFcst/testDistAvgByRad.R')");
             //rc.eval("source(fileName1)" +
             rc.close();
         } catch (RserveException e) {
