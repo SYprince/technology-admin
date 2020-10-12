@@ -3,7 +3,6 @@ package cn.huanzi.qch.baseadmin.supply.solarinput.pojo;
 import lombok.Data;
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 @Entity
 @Table(name = "solar_input")
