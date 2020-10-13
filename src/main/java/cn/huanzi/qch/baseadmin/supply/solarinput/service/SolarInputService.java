@@ -12,10 +12,5 @@ public interface SolarInputService extends CommonService<SolarInputVo, SolarInpu
 
      Map<String,List> getEchartData(String forcastDate);
 
-     /**
-      * 光伏电力的十条曲线
-      * @param forcastDate
-      * @return
-      */
      Map<String,List> getEchartDataMax(String forcastDate);
 }

@@ -7,6 +7,7 @@ import cn.huanzi.qch.baseadmin.supply.solarinput.repository.SolarInputRepository
 import cn.huanzi.qch.baseadmin.supply.solarresult.pojo.SolarResult;
 import cn.huanzi.qch.baseadmin.supply.solarresult.repository.SolarResultRepository;
 import cn.huanzi.qch.baseadmin.supply.solarresultmax.pojo.SolarResultMax;
+import cn.huanzi.qch.baseadmin.supply.solarresultmax.repository.SolarResultMaxRepository;
 import jdk.nashorn.internal.runtime.arrays.ArrayLikeIterator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
@@ -28,6 +29,8 @@ public class SolarInputServiceImpl extends CommonServiceImpl<SolarInputVo, Solar
     private SolarInputRepository solarInputRepository;
     @Autowired
     private SolarResultRepository solarResultRepository;
+    @Autowired
+    private SolarResultMaxRepository solarResultMaxRepository;
 
     private static Boolean isMax = false;
     private static ExampleMatcher exampleMatcher = ExampleMatcher.matching();
@@ -108,7 +111,7 @@ public class SolarInputServiceImpl extends CommonServiceImpl<SolarInputVo, Solar
         SolarResultMax solarResultMax = new SolarResultMax();
         solarResultMax.setTimestamp(forcastDate);
         Example example = Example.of(solarResultMax , exampleMatcher);
-        List<SolarResultMax> resultData = solarResultRepository.findAll(example);
+        List<SolarResultMax> resultData = solarResultMaxRepository.findAll(example);
 
         Map<String,List> map = new HashMap<>(10);
 
