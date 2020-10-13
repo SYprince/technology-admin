@@ -1,21 +1,21 @@
 package cn.huanzi.qch.baseadmin.supply.solarmaxinput.controller;
 
-import cn.huanzi.qch.baseadmin.common.controller.*;
-import cn.huanzi.qch.baseadmin.supply.solarmaxinput.pojo.SolarMaxInput;
-import cn.huanzi.qch.baseadmin.supply.solarmaxinput.vo.SolarMaxInputVo;
-import cn.huanzi.qch.baseadmin.supply.solarmaxinput.service.SolarMaxInputService;
 import org.rosuda.REngine.Rserve.RConnection;
 import org.rosuda.REngine.Rserve.RserveException;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequestMapping("/supply/solarMaxInput/")
-public class SolarMaxInputController extends CommonController<SolarMaxInputVo, SolarMaxInput, Integer> {
-    @Autowired
-    private SolarMaxInputService solarMaxInputService;
+public class SolarMaxInputController{
 
+    /**
+     * 跳转页面
+     * @return
+     */
     @GetMapping("index")
     public ModelAndView index(){
         return new ModelAndView("supply/pv/pvpower","","");
