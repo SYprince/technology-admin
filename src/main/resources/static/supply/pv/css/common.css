@@ -1,0 +1,18 @@
+.pvBtnBorder{
+    border-radius: 5px;
+}
+.layui-card-header{
+    height: 90px;
+    padding-bottom: 5px;
+}
+.pevlayui-input{
+    display: inline-block;
+}
+
+.pvSelectDiv{
+    border-bottom: 1px solid #eeeeee;
+    padding-bottom: 5px;
+}
+#main{
+    margin-top:30px;
+}

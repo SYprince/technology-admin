@@ -1,6 +1,6 @@
 // import '/static/echart/echarts.simple';
 // import * as echarts from "/static/echart/src/echarts";
-
+import supplyDemandCommon from '/supply/pv/js/common.js'
 //let myChart = echarts.init(document.getElementById('main'));
 let forcastInput;
 let forcastResult;
@@ -127,79 +127,6 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
             console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
         }
     })
-    let myChart = echarts.init(document.getElementById('main'));
-//水电电量分位数预测echart表
-    function pvEchart(seriesData) {
-        let pvForcastTitle = ['预测结果1', '预测结果2', '预测结果3', '预测结果4', '预测结果5', '预测结果6', '预测结果7', '预测结果8', '预测结果9', '实际结果'];
-        let xAxisData=[];
-        for (let i=1;i<31;i++){
-            xAxisData.push(i)
-        }
-        let option = {
-            title: {
-                text: ''
-            },
-            tooltip: {
-                trigger: 'axis'
-            },
-            legend: {
-                data: pvForcastTitle
-            },
-            grid: {
-                top: '50px',
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            xAxis: {
-                type: 'category',
-                name: '时段(天)',
-                boundaryGap: false,
-                data: xAxisData
-            },
-            yAxis: {
-                type: 'value',
-                name: '发电量(MW)',
-                left: '10px'
-            },
-            series: []
-        };
-        option.series = [];
-        for (let i = 1; i < 10; i++) {
-            option.series.push({
-                name: pvForcastTitle[i-1],
-                type: 'line',
-                stack: '总量',
-                data: seriesData['v'+i],
-                lineStyle: {color: 'blue'},
-                itemStyle: {
-                    normal: {
-                        color: "#386db3",//折线点的颜色
-                        lineStyle: {
-                            color: "#386db3"//折线的颜色
-                        }
-                    }
-                }
-            });
-        }
-        option.series.push({
-            name: pvForcastTitle[pvForcastTitle.length-1],
-            type: 'line',
-            stack: '总量',
-            data: seriesData['power'],
-            lineStyle: {color: 'black'},
-            itemStyle: {
-                normal: {
-                    color: "#000000",//折线点的颜色
-                    lineStyle: {
-                        color: "#000000"//折线的颜色
-                    }
-                }
-            }
-        })
-        myChart.setOption(option);
-    }
     //水电电量查询事件
     $("#hydroQuery").click(function () {
         let forcastDate = $("#forcastDate").val();
@@ -218,16 +145,8 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         }
         forcastInput.reload(queryCondition);
         forcastResult.reload(queryCondition);
-        reloadEchart(forcastDate);
+        supplyDemandCommon("/supply/smhpForR/echartdata",forcastDate,'hydroelecMain');
     });
-    //水电电量数据表展示图数据加载
-    function reloadEchart(forcastDate) {
-        $.post("/supply/smhpForR/echartdata",{forcastDate : forcastDate},function(data,status){
-            let eachatData = data.data;
-            pvEchart(eachatData);
-        });
-    }
     //初始化
-    reloadEchart(forcastDate);
-
+    supplyDemandCommon("/supply/smhpForR/echartdata",forcastDate,'hydroelecMain');
 })
