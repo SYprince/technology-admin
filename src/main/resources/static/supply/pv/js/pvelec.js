@@ -142,5 +142,13 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
     });
     //初始化
     supplyDemandCommon("/supply/solarInput/echartdata",forcastDate,'pvelecMain');
+
+
+    //预测算法
+    $("#forcast").click(function (){
+        $.post("/supply/solarInput/forcast",{},function(data,status){
+            console.log(data);
+        });
+    })
 })
 

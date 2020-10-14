@@ -12,14 +12,14 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
     let laydate = layui.laydate;
     tree = layui.tree;
     let height = document.documentElement.clientHeight - 60;
-    let forcastDate = '201406';
+    let forcastDate = '201802';
     //
     tableIns = table.render({
         elem: '#hydroDataTable'
         , url: ctx + '/data/hydroData/page'
         , method: 'POST'
         , where : {
-            timestamp: forcastDate
+            date: forcastDate
         }
         //请求前参数处理
         , request: {
@@ -67,8 +67,8 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         ,format: 'yyyyMM'
         ,value: forcastDate
         ,isInitValue: true
-        ,min: '2012-4-1'
-        ,max: '2014-7-1'
+        , min: '2014-1-1'
+        , max: '2018-3-1'
         ,theme: 'molv'  //（墨绿背景）
         ,btns: [ 'confirm']
         ,calendar: true  //公历节日
@@ -92,7 +92,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         };
         if (forcastDate) {
             //设定异步数据接口的额外参数
-            query.where = {timestamp: forcastDate};
+            query.where = {date: forcastDate};
         }
         console.log('测试结果',forcastDate)
         tableIns.reload(query);

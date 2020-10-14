@@ -2,12 +2,19 @@ package cn.huanzi.qch.baseadmin.util;
 
 import com.csvreader.CsvReader;
 import com.csvreader.CsvWriter;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.util.FileSystemUtils;
+import oshi.util.FileUtil;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.lang.reflect.Field;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
 /**
@@ -18,27 +25,26 @@ import java.util.List;
  * DateTime: 10:58 2020/9/18
  */
 public class CsvUtil<V> {
-    public static void main(String[] args) throws IOException {
-        FileWriter fw = new FileWriter("D:\\lalala55.txt");
-        CsvReader csvReader =  new CsvReader("E:\\solarFcst9rollingRes/quantileByDaily.csv",',',Charset.forName("GBK"));
 
-        ArrayList<String[]> csvList = new ArrayList<>();
-        //System.out.println(csvReader.readHeaders());
-        while (csvReader.readRecord()){
-            csvList.add(csvReader.getValues());
+    private static String backupPath = "quantileByDailyBackup/";
+    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+
+    public static void copyFile(String filePath,String filename){
+        if("".equals(filename)){
+            System.out.println("复制文件切报错filename不能为空");
         }
+        String curTime = sdf.format(new Date());
+        File source = new File(filePath + filename);
+        String newBackupFilename = filename.split("\\.")[0] + curTime+ "." + filename.split("\\.")[1];
+        File dest = new File(filePath + backupPath + newBackupFilename);
+        try {
+            FileSystemUtils.copyRecursively(source,dest);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void main(String[] args) throws IOException {
 
-        System.out.println(csvList.get(0)[1]);
-        //System.out.println(csvList.get(0)[1]);
-        //System.out.println((char)fr.read());
-        //System.out.println((char)fr.read());
-        //int c =0;
-        //while( (c=fr.read()) != -1){
-        //    //fw.write(c);
-        //    //System.out.println(c);
-        //}
-        fw.close();
-        csvReader.close();
     }
     public static<V> void exportCSV( Writer file , String[] headers, List<V> data) {
 

@@ -10,7 +10,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
     let form = layui.form;//select、单选、复选等依赖form
     let element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
     let laydate = layui.laydate;
-    let forcastDate = '2014/06';
+    let forcastDate = '2013-12';
     tree = layui.tree;
     let height = document.documentElement.clientHeight - 60;
     //
@@ -19,8 +19,8 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         , url: ctx + '/data/windData/page'
         , method: 'POST'
         , where : {
-        timestamp: forcastDate
-    }
+            timestamp: forcastDate
+        }
         //请求前参数处理
         , request: {
             pageName: 'page' //页码的参数名称，默认：page
@@ -65,11 +65,11 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         elem: '#forcastDate'
         ,trigger: 'click' //采用click弹出
         ,type: 'month'
-        ,format: 'yyyy/M'
+        ,format: 'yyyy-MM'
         ,value: forcastDate
         ,isInitValue: true
-        ,min: '2012-4-1'
-        ,max: '2014-7-1'
+        , min: '2013-10-1'
+        , max: '2013-12-1'
         ,theme: 'molv'  //（墨绿背景）
         ,btns: [ 'confirm']
         ,calendar: true  //公历节日
@@ -82,7 +82,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
 //数据中心水电查询事件
     $("#windQuery").click(function () {
         let forcastDate = $("#forcastDate").val();
-        let windQuery = {
+        let query = {
             page: {
                 curr: 1 //重新从第 1 页开始
             }
@@ -93,7 +93,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         };
         if (forcastDate) {
             //设定异步数据接口的额外参数
-            windQuery.where = {timestamp: forcastDate};
+            query.where = {timestamp: forcastDate};
         }
         console.log('测试结果',forcastDate)
         tableIns.reload(query);

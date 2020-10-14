@@ -1,5 +1,11 @@
 ##### 公共 配置 #######
-
+filepath:
+  solarElecPath: E:\\clear_R/solarFcst/
+  solarPowerPath:  E:\\clear_R/solarFcst_Max/
+  hpElecPath: E:\\clear_R/HP_Forcast/
+  hpPowerPath: E:\\clear_R/HP_Forcast_Max/
+  windElecPath: E:\\clear_R/windFcst/
+  windPowerPath: E:\\clear_R/windFcst_Max/
 #内置Tomcat容器配置
 server:
   port: 8888

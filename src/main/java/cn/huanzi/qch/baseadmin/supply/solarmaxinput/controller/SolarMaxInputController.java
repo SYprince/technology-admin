@@ -1,5 +1,6 @@
 package cn.huanzi.qch.baseadmin.supply.solarmaxinput.controller;
 
+import cn.huanzi.qch.baseadmin.util.ErrorUtil;
 import org.rosuda.REngine.Rserve.RConnection;
 import org.rosuda.REngine.Rserve.RserveException;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.io.File;
 
 @RestController
 @RequestMapping("/supply/solarMaxInput/")
@@ -30,7 +33,7 @@ public class SolarMaxInputController{
     }
 
     public static void main(String[] args) {
-        pvpower();
+        //File
     }
     private static void pvpower() {
         RConnection rc = null;
@@ -50,11 +53,12 @@ public class SolarMaxInputController{
 
             //执行test.R脚本，执行这一步才能调用里面的自定义函数myFunc，如果不行，就在R工具上也执行一下test.R脚本
             //rc.eval("source('E://solarFcst9rollingRes/testRad.R')");
-            rc.eval("source('E://clear_R/solarFcst/testDistAvgByRad.R')");
+            rc.eval("source('E://clear_R/solarFcst/test.R')");
             //rc.eval("source(fileName1)" +
             rc.close();
         } catch (RserveException e) {
-            e.printStackTrace();
+            //e.printStackTrace();
+            ErrorUtil.errorInfoToString(e);
         }
 
     }
