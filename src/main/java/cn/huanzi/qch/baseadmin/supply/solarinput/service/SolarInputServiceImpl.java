@@ -136,7 +136,7 @@ public class SolarInputServiceImpl extends CommonServiceImpl<SolarInputVo, Solar
             s8.add(s.getV8());
             s9.add(s.getV9());
         }
-        map.put("maxtemp",power);
+        map.put("power",power);
         map.put("v1",s1);
         map.put("v2",s2);
         map.put("v3",s3);
