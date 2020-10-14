@@ -33,32 +33,13 @@ export  default function supplyDemandCommon(echartUrl,forcastDate,echartId){
                 type: 'value',
                 name: '发电量(MW)',
                 left: '10px',
-                splitNumber : 30,
             },
             series: []
         };
         option.series = [];
-        for (let i = 1; i < 10; i++) {
-            option.series.push({
-                name: pvForcastTitle[0],
-                type: 'line',
-                stack: '总量',
-                data: echartData['v1'],
-                lineStyle: {color: 'blue'},
-                itemStyle: {
-                    normal: {
-                        color: "#386db3",//折线点的颜色
-                        lineStyle: {
-                            color: "#386db3"//折线的颜色
-                        }
-                    }
-                }
-            });
-         }
         option.series.push({
             name: pvForcastTitle[pvForcastTitle.length-1],
             type: 'line',
-            stack: '总量',
             data: echartData['power'],
             lineStyle: {color: 'black'},
             itemStyle: {
@@ -70,11 +51,27 @@ export  default function supplyDemandCommon(echartUrl,forcastDate,echartId){
                 }
             }
         })
+        for (let i = 1; i < 10; i++) {
+            option.series.push({
+                name: pvForcastTitle[i-1],
+                type: 'line',
+                data: echartData['v'+i],
+                lineStyle: {color: 'blue'},
+                itemStyle: {
+                    normal: {
+                        color: "#386db3",//折线点的颜色
+                        lineStyle: {
+                            color: "#386db3"//折线的颜色
+                        }
+                    }
+                }
+            });
+        }
+
         myChart.setOption(option);
     }
     $.post(echartUrl ,{forcastDate : forcastDate},function(data,status){
         let echatData = data.data;
-        console.log('yyyyyyyy',echatData)
         pvEchart(echatData);
     });
 }

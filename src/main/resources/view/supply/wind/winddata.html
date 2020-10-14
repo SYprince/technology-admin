@@ -6,18 +6,23 @@
     <!-- 引入公用部分 -->
     <script th:replace="common/head::static"></script>
     <!-- 样式 -->
-    <link th:href="@{/supply/pv/css/pvpower.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/supply/pv/css/common.css}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div class="layui-row layui-col-space15">
     <!-- 操作表单 -->
     <div class="layui-col-md12">
         <div class="layui-card">
-            <div class="layui-card-header">风电预测历史数据</div>
+            <div class="layui-card-header">
+                <span>风电预测历史数据</span>
+                <div class="pvSelectDiv">
+                    <input type="text" class="layui-input pevlayui-input" id="forcastDate" style="width: 100px;">
+                    <button class="layui-btn  layui-btn-normal pvBtnBorder"  id="windQuery">查询</button>
+                </div>
+            </div>
             <div class="layui-card-body">
                 <!-- 表格主体 -->
-                <table class="layui-hide" id="windDataTable" lay-filter="test"></table>
-
+                <table class="layui-hide" id="windDataTable" ></table>
             </div>
         </div>
 

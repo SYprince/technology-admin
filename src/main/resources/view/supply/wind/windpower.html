@@ -6,7 +6,7 @@
     <!-- 引入公用部分 -->
     <script th:replace="common/head::static"></script>
     <!-- 样式 -->
-    <link th:href="@{/supply/pv/css/pvelec.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/supply/pv/css/common.css}" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div class="layui-row layui-col-space15">
@@ -22,7 +22,7 @@
             </div>
             <div class="layui-card-body">
                 <!-- 表格主体 -->
-                <table class="layui-hide" id="windpowerTable" lay-filter="test"></table>
+                <table class="layui-hide" id="windpowerTable" ></table>
             </div>
             <div class="layui-card-body">
                 <!-- 表格主体 预测结果 -->

@@ -3,7 +3,6 @@
 
 //let myChart = echarts.init(document.getElementById('main'));
 let tableIns;
-let forcastResult;
 let tree;
 layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], function () {
     let table = layui.table;
@@ -13,7 +12,6 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
     tree = layui.tree;
     let height = document.documentElement.clientHeight - 60;
     let forcastDate = '2014/6';
-    //
     tableIns = table.render({
         elem: '#pvDataTable'
         , url: ctx + '/data/pvData/page'
@@ -81,32 +79,23 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         }
     })
 
-//头工具栏事件
-
-    table.on('toolbar(test)', function (obj) {
-        console.log('www',obj);
-        console.log('uuuu',table)
-        switch (obj.event) {
-            case 'query':
-                let forcastDate = $("#forcastDate").val();
-                let query = {
-                    page: {
-                        curr: 1 //重新从第 1 页开始
-                    }
-                    , done: function (res, curr, count) {
-                        //完成后重置where，解决下一次请求携带旧数据
-                        this.where = {};
-                    }
-                };
-                if (forcastDate) {
-                    //设定异步数据接口的额外参数
-                    query.where = {timestamp: forcastDate};
-                }
-                tableIns.reload(query);
-                $("#forcastDate").val(forcastDate);
-                break;
+    //数据中心光伏查询事件
+    $("#query").click(function () {
+        let forcastDate = $("#forcastDate").val();
+        let query = {
+            page: {
+                curr: 1 //重新从第 1 页开始
+            }
+            , done: function (res, curr, count) {
+                //完成后重置where，解决下一次请求携带旧数据
+                this.where = {};
+            }
+        };
+        if (forcastDate) {
+            //设定异步数据接口的额外参数
+            query.where = {timestamp: forcastDate};
         }
+        tableIns.reload(query);
     });
-
 
 })

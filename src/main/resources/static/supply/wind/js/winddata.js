@@ -10,14 +10,17 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
     let form = layui.form;//select、单选、复选等依赖form
     let element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
     let laydate = layui.laydate;
+    let forcastDate = '2014/06';
     tree = layui.tree;
     let height = document.documentElement.clientHeight - 60;
-
     //
     tableIns = table.render({
         elem: '#windDataTable'
         , url: ctx + '/data/windData/page'
         , method: 'POST'
+        , where : {
+        timestamp: forcastDate
+    }
         //请求前参数处理
         , request: {
             pageName: 'page' //页码的参数名称，默认：page
@@ -58,8 +61,43 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         , height: height
         , cellMinWidth: 80
     });
-
-
+    laydate.render({
+        elem: '#forcastDate'
+        ,trigger: 'click' //采用click弹出
+        ,type: 'month'
+        ,format: 'yyyy/M'
+        ,value: forcastDate
+        ,isInitValue: true
+        ,min: '2012-4-1'
+        ,max: '2014-7-1'
+        ,theme: 'molv'  //（墨绿背景）
+        ,btns: [ 'confirm']
+        ,calendar: true  //公历节日
+        ,done: function(value, date, endDate){
+            console.log(value); //得到日期生成的值，如：2017-08-18
+            console.log(date); //得到日期时间对象：{year: 2017, month: 8, date: 18, hours: 0, minutes: 0, seconds: 0}
+            console.log(endDate); //得结束的日期时间对象，开启范围选择（range: true）才会返回。对象成员同上。
+        }
+    })
+//数据中心水电查询事件
+    $("#windQuery").click(function () {
+        let forcastDate = $("#forcastDate").val();
+        let windQuery = {
+            page: {
+                curr: 1 //重新从第 1 页开始
+            }
+            , done: function (res, curr, count) {
+                //完成后重置where，解决下一次请求携带旧数据
+                this.where = {};
+            }
+        };
+        if (forcastDate) {
+            //设定异步数据接口的额外参数
+            windQuery.where = {timestamp: forcastDate};
+        }
+        console.log('测试结果',forcastDate)
+        tableIns.reload(query);
+    });
 
 
 
