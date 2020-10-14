@@ -63,7 +63,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
     //预测结果表格
     forcastResult = table.render({
         elem: '#forcastResult'
-        , url: ctx + '/supply/windMaxResult/page'
+        , url: ctx + '/supply/windResultMax/page'
         , method: 'POST'
         , where: {
             timestamp: forcastDate
