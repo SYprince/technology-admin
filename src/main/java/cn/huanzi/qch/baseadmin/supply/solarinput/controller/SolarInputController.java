@@ -12,9 +12,9 @@ import cn.huanzi.qch.baseadmin.supply.solarresult.repository.SolarResultReposito
 import cn.huanzi.qch.baseadmin.util.CsvUtil;
 import cn.huanzi.qch.baseadmin.util.ErrorUtil;
 import com.csvreader.CsvReader;
-//import com.jmatio.io.MatFileReader;
-//import com.jmatio.types.MLArray;
-//import com.jmatio.types.MLDouble;
+import com.jmatio.io.MatFileReader;
+import com.jmatio.types.MLArray;
+import com.jmatio.types.MLDouble;
 import javafx.util.converter.TimeStringConverter;
 import lombok.extern.slf4j.Slf4j;
 import org.rosuda.REngine.Rserve.RConnection;
@@ -103,9 +103,9 @@ public class SolarInputController extends CommonController<SolarInputVo, SolarIn
     public Result<List> forcast() throws RserveException {
         CsvUtil.copyFile(solarElecPath ,"quantileByDaily.csv");
 
-//        RConnection rc = new RConnection();
-//        rc.eval("source('"+ solarElecPath +"test.R')");
-//        rc.close();
+        RConnection rc = new RConnection();
+        rc.eval("source('"+ solarElecPath +"test.R')");
+        rc.close();
 
         CsvReader csvReader = null;
         ArrayList<String[]> csvList = new ArrayList<>(9);
