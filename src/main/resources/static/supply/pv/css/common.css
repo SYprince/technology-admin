@@ -19,3 +19,6 @@
 .layui-table-tool{
     display: none;
 }
+.layui-btn .layui-icon {
+    font-size: 14px;
+}

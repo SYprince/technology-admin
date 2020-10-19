@@ -96,7 +96,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
             query.where = {timestamp: forcastDate};
         }
         console.log('测试结果',forcastDate)
-        tableIns.reload(query);
+        tableIns.reload(windQuery);
     });
 
 

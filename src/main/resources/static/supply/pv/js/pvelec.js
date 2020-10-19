@@ -120,8 +120,8 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         , done: function (value, date, endDate) {
         }
     })
-    //光伏电量查询事件
-    $("#pvQuery").click(function () {
+    //光伏电量查询函数
+    function pvSelect(){
         let forcastDate = $("#forcastDate").val();
         let pvQuery = {
             page: {
@@ -139,16 +139,25 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         forcastInput.reload(pvQuery);
         forcastResult.reload(pvQuery);
         supplyDemandCommon("/supply/solarInput/echartdata",forcastDate,'pvelecMain');
-    });
+        $('#pvQuery').html('查询').removeClass('layui-icon-loading layui-anim-rotate layui-anim-loop');
+    }
+    //光伏电量查询事件
+    $("#pvQuery").click(supplyDemandCommon.prototype.dbClick(pvSelect,2000,'pvQuery'));
+
+   // window.addEventListener("click",);
     //初始化
     supplyDemandCommon("/supply/solarInput/echartdata",forcastDate,'pvelecMain');
 
+    //预测函数
+    function pvForcast(){
 
-    //预测算法
-    $("#forcast").click(function (){
-        $.post("/supply/solarInput/forcast",{},function(data,status){
-            console.log(data);
-        });
-    })
+      $.post("/supply/solarInput/forcast",{},function(data,status){
+        console.log(data);
+        $('#pvQuery').html('预测').removeClass('layui-icon-loading layui-anim-rotate layui-anim-loop');
+      });
+    }
+
+    //预测事件
+    $("#forcast").click(supplyDemandCommon.prototype.dbClick(pvForcast,2000,'forcast'))
 })
 

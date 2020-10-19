@@ -75,3 +75,15 @@ export  default function supplyDemandCommon(echartUrl,forcastDate,echartId){
         pvEchart(echatData);
     });
 }
+//防抖函数
+supplyDemandCommon.prototype.dbClick = function (fn,wait,idName){
+    let timer = null;
+    return function(){
+        if(timer !== null){
+          clearTimeout(timer);
+        }
+          $('#'+idName).html('').addClass('layui-icon-loading layui-anim-rotate layui-anim-loop');
+          timer = setTimeout(fn,wait);
+    }
+
+}
