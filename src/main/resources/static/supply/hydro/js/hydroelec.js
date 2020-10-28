@@ -149,4 +149,13 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
     });
     //初始化
     supplyDemandCommon("/supply/smhpForR/echartdata",forcastDate,'hydroelecMain');
+    //预测事件
+    $("#forcast").click(function (){
+            var index = layer.load(2);
+            $.post("/supply/solarInput/forcast",{},function(data,status){
+                console.log('yuece ',data)
+                layer.close(index);
+            });
+        }
+    )
 })

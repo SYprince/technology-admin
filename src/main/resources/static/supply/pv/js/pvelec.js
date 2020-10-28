@@ -138,26 +138,25 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         }
         forcastInput.reload(pvQuery);
         forcastResult.reload(pvQuery);
-        supplyDemandCommon("/supply/solarInput/echartdata",forcastDate,'pvelecMain');
-        $('#pvQuery').html('查询').removeClass('layui-icon-loading layui-anim-rotate layui-anim-loop');
     }
     //光伏电量查询事件
-    $("#pvQuery").click(supplyDemandCommon.prototype.dbClick(pvSelect,2000,'pvQuery'));
+    $("#pvQuery").click(function (){
+        pvSelect()
+        }
+    );
 
    // window.addEventListener("click",);
     //初始化
     supplyDemandCommon("/supply/solarInput/echartdata",forcastDate,'pvelecMain');
 
-    //预测函数
-    function pvForcast(){
-
-      $.post("/supply/solarInput/forcast",{},function(data,status){
-        console.log(data);
-        $('#pvQuery').html('预测').removeClass('layui-icon-loading layui-anim-rotate layui-anim-loop');
-      });
-    }
-
     //预测事件
-    $("#forcast").click(supplyDemandCommon.prototype.dbClick(pvForcast,2000,'forcast'))
+    $("#forcast").click(function (){
+        var index = layer.load(2);
+        $.post("/supply/solarInput/forcast",{},function(data,status){
+            console.log('yuece ',data)
+            layer.close(index);
+        });
+      }
+    )
 })
 
