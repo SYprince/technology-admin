@@ -4,6 +4,8 @@ import cn.huanzi.qch.baseadmin.common.pojo.PageCondition;
 import cn.huanzi.qch.baseadmin.common.pojo.PageInfo;
 import cn.huanzi.qch.baseadmin.common.pojo.Result;
 import cn.huanzi.qch.baseadmin.common.repository.CommonRepository;
+import cn.huanzi.qch.baseadmin.supply.calculate.vo.CalculateVo;
+import cn.huanzi.qch.baseadmin.supply.eyuce.vo.EyuceVo;
 import cn.huanzi.qch.baseadmin.supply.hpresult.vo.HpResultVo;
 import cn.huanzi.qch.baseadmin.supply.hpresultmax.vo.HpResultMaxVo;
 import cn.huanzi.qch.baseadmin.supply.smhpforr.vo.SmhpForRVo;
@@ -86,6 +88,7 @@ public class CommonServiceImpl<V, E, T> implements CommonService<V, E, T> {
         //光伏/风电 电力/电量分页列表(1个输入实体 2个输出实体) 查询条件字段为timestamp
         //水电 电力/电量分页列表(1个输入实体 2个输出实体) 查询条件字段为date
         if(entityVo instanceof SolarInputVo || entityVo instanceof SolarResultVo || entityVo instanceof SolarResultMaxVo ||
+                entityVo instanceof EyuceVo || entityVo instanceof CalculateVo ||
             entityVo instanceof WindInputVo || entityVo instanceof WindResultVo || entityVo instanceof WindResultMaxVo){
             exampleMatcher = exampleMatcher.withMatcher("timestamp",ExampleMatcher.GenericPropertyMatchers.startsWith());
         }else if(entityVo instanceof SmhpForRVo|| entityVo instanceof HpResultVo || entityVo instanceof HpResultMaxVo){

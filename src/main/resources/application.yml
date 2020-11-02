@@ -36,7 +36,7 @@ spring:
 
 #是否需要输入验证码
 captcha:
-  enable: false
+  enable: true #false
 
 ---
 ##### dev 配置 #######
@@ -53,6 +53,8 @@ spring:
 #是否需要输入验证码
 captcha:
   enable: false
+
+
 
 ---
 ##### prod 配置 #######
