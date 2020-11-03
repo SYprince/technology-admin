@@ -138,6 +138,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         }
         forcastInput.reload(pvQuery);
         forcastResult.reload(pvQuery);
+        supplyDemandCommon("/supply/solarInput/echartdata",forcastDate,'pvelecMain');
     }
     //光伏电量查询事件
     $("#pvQuery").click(function (){
