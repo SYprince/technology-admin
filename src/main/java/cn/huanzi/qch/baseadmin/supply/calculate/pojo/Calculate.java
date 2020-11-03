@@ -9,14 +9,18 @@ import java.util.Date;
 @Table(name = "calculate")
 @Data
 public class Calculate implements Serializable {
-    private String elec;//
+    private String elec;
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Integer id;//
+    private Integer id;
 
-    private String price;//
+    private String price;
 
-    private String timestamp;//
+    private String timestamp;
+    /**
+     * 弹性系数
+     */
+    private String springRate;
 
 }

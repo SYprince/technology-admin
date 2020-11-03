@@ -6,12 +6,16 @@ import java.util.Date;
 
 @Data
 public class CalculateVo extends PageCondition implements Serializable {
-    private String elec;//
+    private String elec;
 
-    private Integer id;//
+    private Integer id;
 
-    private String price;//
+    private String price;
 
-    private String timestamp;//
+    private String timestamp;
+    /**
+     * 弹性系数
+     */
+    private String springRate;
 
 }

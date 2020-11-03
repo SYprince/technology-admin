@@ -10,4 +10,6 @@ import java.util.Map;
 public interface CalculateService extends CommonService<CalculateVo, Calculate, Integer> {
 
     Map<String,List> getEchartData(String forcastDate);
+
+    int calculate(String forcastDate);
 }

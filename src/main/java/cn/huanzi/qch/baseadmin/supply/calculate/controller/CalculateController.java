@@ -26,6 +26,20 @@ public class CalculateController extends CommonController<CalculateVo, Calculate
     }
 
     /**
+     * 计算
+     * @param forcastDate
+     * @return
+     */
+    @PostMapping("calculate")
+    @Decrypt
+    @Encrypt
+    public Result calculate(String forcastDate){
+       int result = calculateService.calculate(forcastDate);
+
+        return Result.of(result);
+    }
+
+    /**
      * 预测结果曲线查询接口
      */
     @PostMapping("echartdata")

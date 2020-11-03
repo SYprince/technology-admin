@@ -36,7 +36,7 @@ spring:
 
 #是否需要输入验证码
 captcha:
-  enable: true #false
+  enable: true
 
 ---
 ##### dev 配置 #######
@@ -45,14 +45,14 @@ spring:
 
   #数据库配置
   datasource:
-    url: jdbc:mysql://47.93.162.95:3306/technology_supply_demand?serverTimezone=GMT%2B8&characterEncoding=utf-8
+    url: jdbc:mysql://47.93.162.95:3306/technology_supply_demand?serverTimezone=GMT%2B8&characterEncoding=utf-8&useSSL=false
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: org.apache.commons.dbcp.BasicDataSource
 #是否需要输入验证码
 captcha:
-  enable: false
+  enable: true
 
 
 

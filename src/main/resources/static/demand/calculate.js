@@ -1,7 +1,4 @@
-// import '/static/echart/echarts.simple';
-//import * as echarts from "/static/echarts/echarts";
-import supplyDemandCommon from '/supply/pv/js/common.js'
-let myChart = echarts.init(document.getElementById('calculateMain'));
+//let myChart = echarts.init(document.getElementById('calculateMain'));
 let forcastInput;
 let forcastResult;
 let tree;
@@ -10,7 +7,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
     let form = layui.form;//select、单选、复选等依赖form
     let element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
     let laydate = layui.laydate;
-    let forcastDate = '2017/12';
+    let forcastDate = '2014/12';
     tree = layui.tree;
     let height = document.documentElement.clientHeight - 160;
 
@@ -51,6 +48,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
             , {field: 'timestamp', title: '日期'}
             , {field: 'elec', title: '历史负荷'}
             , {field: 'price', title: '电价'}
+            , {field: 'springRate', title: '计算结果:弹性系数'}
         ]]
         , defaultToolbar: ['', '', '']
         , page: true
@@ -93,9 +91,32 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         }
         forcastInput.reload(queryCondition);
         //forcastResult.reload(queryCondition);
-        reloadThisEchart(forcastDate);
+        // reloadThisEchart(forcastDate);
     });
 
+    $("#calculate").click(function () {
+        let forcastDate = $("#forcastDate").val();
+        let queryCondition = {
+            page: {
+                curr: 1 //重新从第 1 页开始
+            }
+            , done: function (res, curr, count) {
+                //完成后重置where，解决下一次请求携带旧数据
+                this.where = {};
+            }
+        };
+        if (forcastDate) {
+            //设定异步数据接口的额外参数
+            queryCondition.where = { timestamp : forcastDate};
+        }
+        $.post("/demand/calculate/calculate" ,{forcastDate : forcastDate},function(data,status){
+
+            if(data.flag){
+                forcastInput.reload(queryCondition);
+            }
+        });
+
+    });
 
 })
 function reloadThisEchart(forcastDate){
