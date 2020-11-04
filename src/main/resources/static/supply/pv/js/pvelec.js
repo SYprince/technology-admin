@@ -35,6 +35,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         //响应后数据处理
         , parseData: function (res) { //res 即为原始返回的数据
             let data = res.data;
+            console.log('查询结果', data)
             return {
                 "flag": res.flag, //解析接口状态
                 "msg": res.msg, //解析提示文本
