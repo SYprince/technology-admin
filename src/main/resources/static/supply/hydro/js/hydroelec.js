@@ -1,6 +1,6 @@
 // import '/static/echart/echarts.simple';
 // import * as echarts from "/static/echart/src/echarts";
-import supplyDemandCommon from '/supply/pv/js/common.js'
+import * as commonFun from '/supply/pv/js/common.js'
 //let myChart = echarts.init(document.getElementById('main'));
 let forcastInput;
 let forcastResult;
@@ -145,10 +145,10 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         }
         forcastInput.reload(queryCondition);
         forcastResult.reload(queryCondition);
-        supplyDemandCommon("/supply/smhpForR/echartdata",forcastDate,'hydroelecMain');
+        commonFun.supplyDemandCommon("/supply/smhpForR/echartdata",forcastDate,'hydroelecMain');
     });
     //初始化
-    supplyDemandCommon("/supply/smhpForR/echartdata",forcastDate,'hydroelecMain');
+    commonFun.supplyDemandCommon("/supply/smhpForR/echartdata",forcastDate,'hydroelecMain');
     //预测事件
     $("#forcast").click(function (){
             var index = layer.load(2);

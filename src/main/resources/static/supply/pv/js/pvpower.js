@@ -1,6 +1,6 @@
 // import '/static/echart/echarts.simple';
 // import * as echarts from "/static/echart/src/echarts";
-import supplyDemandCommon from '/supply/pv/js/common.js'
+import * as commonFun from '/supply/pv/js/common.js'
 let tableIns;
 let forcastResultPower;
 let tree;
@@ -139,10 +139,10 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         }
         tableIns.reload(pvQuery);
         forcastResultPower.reload(pvQuery);
-        supplyDemandCommon('/supply/solarInput/echartdataMax',forcastDate,'pvpowerMain');
+        commonFun.supplyDemandCommon('/supply/solarInput/echartdataMax',forcastDate,'pvpowerMain');
     });
     //初始化
-    supplyDemandCommon('/supply/solarInput/echartdataMax',forcastDate,'pvpowerMain');
+    commonFun.supplyDemandCommon('/supply/solarInput/echartdataMax',forcastDate,'pvpowerMain');
     //预测事件
     $("#forcast").click(function (){
             var index = layer.load(2);

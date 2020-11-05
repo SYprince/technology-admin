@@ -7,32 +7,14 @@
     <script th:replace="common/head::static"></script>
     <!-- 样式 -->
     <link th:href="@{/supply/pv/css/common.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/balance/css/balanceShow.css}" rel="stylesheet" type="text/css"/>
 </head>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/map/js/china.js"></script>
+
 <body>
-<div class="layui-row layui-col-space15">
+<div class="balanceContent">
     <!-- 操作表单 -->
-    <div class="layui-col-md12">
-        <div class="layui-card">
-            <div class="layui-card-header">
-                <div class="pvSelectDiv">
-                    <input type="text" class="layui-input pevlayui-input" id="forcastDate" style="width: 100px;">
-                    <button class="layui-btn  layui-btn-normal pvBtnBorder"  id="hydroQuery">查询</button>
-                </div>
-                <button class="layui-btn  layui-btn-normal pvBtnBorder" id="forcast">预测</button>
-            </div>
-            <div class="layui-card-body">
-                <!-- 表格主体 -->
-                <table class="layui-hide" id="hydroelecTable" lay-filter="test"></table>
-
-            </div>
-            <div class="layui-card-body">
-                <!-- 表格主体 预测结果 -->
-                <table class="layui-hide" id="forcastResult"></table>
-
-                <div id="hydroelecMain" style="width: 1000px;height:400px;"></div>
-            </div>
-        </div>
-
+    <div id="balanceEchart">
     </div>
 </div>
 </body>
@@ -40,6 +22,7 @@
 
 <!--<script th:src="@{/supply/hydro/js/hydroelec.js}" type="module"></script>-->
 <!--<script th:src="@{/echart/echarts.min.js}" type="module"></script>-->
+<script th:src="@{/balance/js/balanceShow.js}" type="module"></script>
 <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
     $(function () {

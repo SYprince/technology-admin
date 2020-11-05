@@ -1,6 +1,6 @@
 // import '/static/echart/echarts.simple';
 // import * as echarts from "/static/echart/src/echarts";
-import supplyDemandCommon from '/supply/pv/js/common.js'
+import * as commonFun from '/supply/pv/js/common.js'
 //let myChart = echarts.init(document.getElementById('main'));
 let forcastInput;
 let forcastResult;
@@ -143,10 +143,10 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
         }
         forcastInput.reload(pvQuery);
         forcastResult.reload(pvQuery);
-        supplyDemandCommon("/supply/windInput/echartdata",forcastDate,'main')
+        commonFun.supplyDemandCommon("/supply/windInput/echartdata",forcastDate,'main')
     });
     //初始化
-    supplyDemandCommon("/supply/windInput/echartdata",forcastDate,'main')
+    commonFun.supplyDemandCommon("/supply/windInput/echartdata",forcastDate,'main')
     //预测事件
     $("#forcast").click(function (){
             var index = layer.load(2);
