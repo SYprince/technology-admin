@@ -39,20 +39,20 @@ public class SysUserMenuServiceImpl extends CommonServiceImpl<SysUserMenuVo, Sys
                 menuVoList.add(sysMenuVo);
             }
         });
-        //从lambda 表达式引用的本地变量必须是最终变量或实际上的最终变量
-        List<SysMenuVo> newmenuVoList = menuVoList.stream().sorted(Comparator.comparing(SysMenuVo::getSort)).collect(Collectors.toList());
+
         sysUserMenuVoList.forEach((sysUserMenuVo) -> {
             SysMenuVo sysMenuVo = sysUserMenuVo.getSysMenu();
             if(!StringUtils.isEmpty(sysMenuVo.getMenuParentId())){
                 //子节点
-                newmenuVoList.forEach((sysMenuVoP) -> {
+                menuVoList.forEach((sysMenuVoP) -> {
                     if(sysMenuVoP.getMenuId().equals(sysMenuVo.getMenuParentId())){
                         sysMenuVoP.getChildren().add(sysMenuVo);
                     }
                 });
             }
         });
-
+//从lambda 表达式引用的本地变量必须是最终变量或实际上的最终变量
+        List<SysMenuVo> newmenuVoList = menuVoList.stream().sorted(Comparator.comparing(SysMenuVo::getSort)).collect(Collectors.toList());
         return Result.of(newmenuVoList);
     }
 

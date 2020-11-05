@@ -76,27 +76,21 @@
             <!-- 内容 -->
             <div class="layui-tab-content">
                 <div class="layui-tab-item layui-show">
-                    <div class="layui-row layui-col-space15" style="padding: 10px;background-color: #F2F2F2;">
-                        xxxxxxxxxxxxxxxxxxxxxxx
-                    </div>
                     <div class="layui-row layui-col-space15" style="padding: 20px;background-color: #F2F2F2;">
-                        <div class="layui-col-md6">
+                        <div class="layui-col-md12">
                             <div class="layui-card">
-                                <div class="layui-card-header">欢迎使用</div>
+                                <div class="layui-card-header">
+                                    欢迎使用，<span th:text="${loginUser.userName}"></span>
+                                </div>
                                 <div class="layui-card-body">
-                                    欢迎你，<span th:text="${loginUser.userName}"></span>
+                                    <p>    2018年，由国网能研院组织，清华大学、中国农业大学参与共同研究市场交易环境下、清洁能源参与下的供应能力分析、需求情况分析、电力电量平衡分析预测模型。供应侧分别针对风能、光伏、水能，研究基于组合预测的月度供给能力分析，研究清洁能源之间发电能力互补特性；需求侧考虑交易影响需求增长、负荷弹性变化等因素，构建市场交易环境下月度电力需求分析预测模型。基此研究成果，电力电量分析预测系统完成分析模型集成与多维度电力电量供需预测成果的展示。</p>
                                     <br/>
-                                    <br/>
-                                    <p>电力电量分析预测系统是由国网能研院牵头，科东电力公司负责集成清华、中国农大关于清洁能源参与交易下供应能力分析、考虑市场交易与负荷弹性的需求分析的算法预测成果展示的一套预测模型系统。</p>
-                                    <br/>
-                                    <br/>
-                                    <p>作者：北京科东电力控制有限公司</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="layui-col-md6">
+                        <div class="layui-col-md12">
                             <div class="layui-card">
-                                <div class="layui-card-header">系统公告1</div>
+                                <div class="layui-card-header">系统公告</div>
                                 <div class="layui-card-body">
                                     <div th:utext="${sys.sysNoticeText}"></div>
                                 </div>
