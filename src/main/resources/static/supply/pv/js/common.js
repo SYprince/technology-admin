@@ -81,7 +81,7 @@ function balanceEchart(echartId){
         tooltip: {},
         dataRange: {
             x: '100px',
-            y: '500px',
+            y: '50%',
             seriesIndex: [1],
             splitList: [
                 // {start: 1000, end: 1500,label:'',color:'lightGrey'},
