@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<!--解决idea thymeleaf 表达式模板报红波浪线-->
+<!--suppress ALL -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- 引入公用部分 -->
+    <script th:replace="common/head::static"></script>
+    <!-- 样式 -->
+    <link th:href="@{/supply/pv/css/common.css}" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+
+    <!--   动态选项卡   -->
+    <div class="layui-tab" lay-filter="demo" >
+        <!-- 标题 -->
+        <ul class="layui-tab-title">
+            <li class="layui-this" lay-id="11">地区用电情况</li>
+            <li class="layui-this" lay-id="11">电网最高负荷</li>
+        </ul>
+        <!-- 内容 -->
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <!-- 地区用电情况 -->
+                <table class="layui-hide" id="overallElecTable" ></table>
+            </div>
+            <div class="layui-tab-item">
+                <!-- 电网最高负荷 -->
+                <table class="layui-hide" id="overllMaximumloadTable" ></table>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+<!-- js -->
+
+<script th:src="@{/balance/balanceoverallelec.js}" type="module"></script>
+<script th:src="@{/balance/balanceoverallmaximumload.js}" type="module"></script>
+</html>
