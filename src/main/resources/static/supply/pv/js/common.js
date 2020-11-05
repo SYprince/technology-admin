@@ -78,17 +78,20 @@ function supplyDemandCommon(echartUrl,forcastDate,echartId){
 function balanceEchart(echartId){
     let myChart = echarts.init(document.getElementById(echartId));
     let option = {
-        tooltip: {},
+        tooltip: {
+            trigger: 'item',
+            backgroundColor: 'rgba(12, 40, 67,1)',
+           formatter: '{b}'
+        },
         dataRange: {
             x: '100px',
             y: '50%',
             seriesIndex: [1],
             splitList: [
-                // {start: 1000, end: 1500,label:'',color:'lightGrey'},
-                {start: 310, end: 1000,label: '富裕' ,color:'green'},
-                {start: 200, end: 300, label: '基本平衡' ,color:'lightGreen'},
-                {start: 10, end: 200, label: '偏紧' ,color:'yellow'},
-                {end:10, label: '紧张', color: 'red'},
+                {start: 310, end: 1000,label: '富裕' ,color:'rgba(164, 209, 241,1)'},
+                {start: 200, end: 300, label: '基本平衡' ,color:'rgba(30, 95, 159,1)'},
+                {start: 10, end: 200, label: '偏紧' ,color:'rgba(23, 73, 150,1)'},
+                {end:10, label: '紧张', color: 'rgba(12, 40, 67,1)'},
             ],
         },
         geo: {
@@ -103,12 +106,12 @@ function balanceEchart(echartId){
             },
             emphasis:{
                 itemStyle: {
-                    areaColor: null,
+                    areaColor: 'rgba(23, 73, 150,0.7)',
                     shadowOffsetX: 0,
                     shadowOffsetY: 0,
-                    shadowBlur: 20,
+                    shadowBlur: 10,
                     borderWidth: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    shadowColor: 'rgba(255, 255, 255, 0.5)'
                 }
             }
         },
@@ -124,12 +127,9 @@ function balanceEchart(echartId){
                     position: 'right',
                     show: false
                 },
-                itemStyle: {
-                    color: '#F06C00'
-                },
                 emphasis: {
                     label: {
-                        show: true
+                        show: false
                     }
                 }
             },
