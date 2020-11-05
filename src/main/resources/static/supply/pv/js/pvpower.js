@@ -130,7 +130,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
             }
             , done: function (res, curr, count) {
                 //完成后重置where，解决下一次请求携带旧数据
-                this.where = {};
+                //this.where = {};
             }
         };
         if (forcastDate) {

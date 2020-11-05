@@ -25,4 +25,7 @@ public class SysMenu implements Serializable {
 
     private Date updateTime;//修改时间
 
+
+    private Integer sort;
+
 }
