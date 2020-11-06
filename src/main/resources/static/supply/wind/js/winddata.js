@@ -53,7 +53,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
             , {field: 'ws', title: '风速'}
             , {field: 'wsMax', title: '最大风速'}
             , {field: 'doy', title: '年中位置'}
-            , {field: 'v', title: 'v'}
+            //, {field: 'v', title: 'v'}
             //, {fixed: 'right', title: '操作', toolbar: '#userTableBarDemo'}
         ]]
         , defaultToolbar: ['', '', '']

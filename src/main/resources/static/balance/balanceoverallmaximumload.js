@@ -51,7 +51,7 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
             , {field: 'increaseRate', title: '增长率'}
         ]]
         , defaultToolbar: ['', '', '']
-        , page: true
+        , page: false
         , height: height
         , cellMinWidth: 80
     });

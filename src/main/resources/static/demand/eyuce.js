@@ -1,6 +1,5 @@
 // import '/static/echart/echarts.simple';
 //import * as echarts from "/static/echarts/echarts";
-import supplyDemandCommon from '/supply/pv/js/common.js'
 let myChart = echarts.init(document.getElementById('eyuceMain'));
 let forcastInput;
 let forcastResult;
