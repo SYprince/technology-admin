@@ -178,4 +178,156 @@ function balanceEchart(echartId){
     };
     myChart.setOption(option);
 }
-export   {supplyDemandCommon,balanceEchart}
+function supplyTotalOne(echartId){
+    let myChart = echarts.init(document.getElementById(echartId));
+    let dataAxis = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+    let data = [0.940378006872852,0.949828178694158,0.915979381443299,0.912542955326461,0.890206185567010,0.843986254295533,0.839347079037801,0.834192439862543,0.818556701030928];
+    let yMax = 1.5;
+    let dataShadow = [];
+
+    for (var i = 0; i < data.length; i++) {
+        dataShadow.push(yMax);
+    }
+
+    let option = {
+        title: {
+            text: '全时段火电机组开机率'
+        },
+        xAxis: {
+            data: dataAxis,
+            axisTick: {
+                show: false
+            },
+            axisLine: {
+                show: false
+            },
+            z: 10
+        },
+        yAxis: {
+            axisLine: {
+                show: false
+            },
+            axisTick: {
+                show: false
+            },
+            axisLabel: {
+                textStyle: {
+                    color: '#999'
+                }
+            }
+        },
+        dataZoom: [
+            {
+                type: 'inside'
+            }
+        ],
+        series: [
+            { // For shadow
+                type: 'bar',
+                itemStyle: {
+                    color: 'rgba(0,0,0,0.05)'
+                },
+                barGap: '-100%',
+                barCategoryGap: '40%',
+                data: dataShadow,
+                animation: false
+            },
+            {
+                type: 'bar',
+                itemStyle: {
+                    color: new echarts.graphic.LinearGradient(
+                        0, 0, 0, 1,
+                        [
+                            {offset: 0, color: '#83bff6'},
+                            {offset: 0.5, color: '#188df0'},
+                            {offset: 1, color: '#188df0'}
+                        ]
+                    )
+                },
+                emphasis: {
+                    itemStyle: {
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                {offset: 0, color: '#2378f7'},
+                                {offset: 0.7, color: '#2378f7'},
+                                {offset: 1, color: '#83bff6'}
+                            ]
+                        )
+                    }
+                },
+                data: data
+            }
+        ]
+    };
+    myChart.setOption(option)
+}
+function supplyTotalTwo(echartId,barData,lineData,minBar,minLine,barName,lineName){
+   let myChart = echarts.init(document.getElementById(echartId));
+   let option = {
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                crossStyle: {
+                    color: '#000'
+                }
+            }
+        },
+        toolbox: {
+            feature: {
+                // dataView: {show: true, readOnly: false},
+                // magicType: {show: true, type: ['line', 'bar']},
+                // restore: {show: true},
+                // saveAsImage: {show: true}
+            }
+        },
+        legend: {
+            data: [ barName, lineName]
+        },
+        xAxis: [
+            {
+                type: 'category',
+                data: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+            }
+        ],
+        yAxis: [
+            {
+                type: 'value',
+                name: barName,
+                min: minBar,
+                max: 30000,
+                // interval: 800,
+                // axisLabel: {
+                //     formatter: '{value} ml'
+                // }
+            },
+            {
+                type: 'value',
+                name: lineName,
+                min: minLine,
+                max: 1,
+                interval: 5,
+                // axisLabel: {
+                //     formatter: '{value} °C'
+                // }
+            }
+        ],
+        series: [
+
+            {
+                name: barName,
+                type: 'bar',
+                data: barData
+            },
+            {
+                name: lineName,
+                type: 'line',
+                yAxisIndex: 1,
+                data: lineData
+            }
+        ]
+    };
+    myChart.setOption(option)
+}
+export   {supplyDemandCommon,balanceEchart,supplyTotalOne,supplyTotalTwo}
