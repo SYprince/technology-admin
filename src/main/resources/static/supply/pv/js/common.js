@@ -81,7 +81,7 @@ function balanceEchart(echartId){
         tooltip: {
             trigger: 'item',
             backgroundColor: 'rgba(12, 40, 67,1)',
-           formatter: '{b}'
+            formatter: '{b}'
         },
         dataRange: {
             x: '100px',
@@ -204,6 +204,7 @@ function supplyTotalOne(echartId){
             z: 10
         },
         yAxis: {
+
             axisLine: {
                 show: false
             },
@@ -222,40 +223,33 @@ function supplyTotalOne(echartId){
             }
         ],
         series: [
-            { // For shadow
-                type: 'bar',
-                itemStyle: {
-                    color: 'rgba(0,0,0,0.05)'
-                },
-                barGap: '-100%',
-                barCategoryGap: '40%',
-                data: dataShadow,
-                animation: false
-            },
             {
                 type: 'bar',
+                barWidth: 18,
                 itemStyle: {
-                    color: new echarts.graphic.LinearGradient(
-                        0, 0, 0, 1,
-                        [
-                            {offset: 0, color: '#83bff6'},
-                            {offset: 0.5, color: '#188df0'},
-                            {offset: 1, color: '#188df0'}
-                        ]
-                    )
-                },
-                emphasis: {
-                    itemStyle: {
+                    normal: {
+                        barBorderRadius: 4,
                         color: new echarts.graphic.LinearGradient(
                             0, 0, 0, 1,
                             [
-                                {offset: 0, color: '#2378f7'},
-                                {offset: 0.7, color: '#2378f7'},
-                                {offset: 1, color: '#83bff6'}
+                                {offset: 0, color: '#4A7FE9'},
+                                {offset: 1, color: '#121D55'}
                             ]
                         )
                     }
                 },
+                // emphasis: {
+                //     itemStyle: {
+                //         color: new echarts.graphic.LinearGradient(
+                //             0, 0, 0, 1,
+                //             [
+                //                 {offset: 0, color: '#2378f7'},
+                //                 {offset: 0.7, color: '#2378f7'},
+                //                 {offset: 1, color: '#83bff6'}
+                //             ]
+                //         )
+                //     }
+                // },
                 data: data
             }
         ]
@@ -272,7 +266,7 @@ function supplyTotalTwo(echartId,barData,lineData,minBar,minLine,barName,lineNam
                 crossStyle: {
                     color: '#000'
                 }
-            }
+            },
         },
         toolbox: {
             feature: {
@@ -289,7 +283,13 @@ function supplyTotalTwo(echartId,barData,lineData,minBar,minLine,barName,lineNam
             {
                 type: 'category',
                 data: ['1', '2', '3', '4', '5', '6', '7', '8', '9'],
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(255,255,255,0.5)'
+                    }
+                }
             }
+
         ],
         yAxis: [
             {
@@ -297,6 +297,11 @@ function supplyTotalTwo(echartId,barData,lineData,minBar,minLine,barName,lineNam
                 name: barName,
                 min: minBar,
                 max: 30000,
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(255,255,255,0.5)'
+                    }
+                }
                 // interval: 800,
                 // axisLabel: {
                 //     formatter: '{value} ml'
@@ -308,6 +313,11 @@ function supplyTotalTwo(echartId,barData,lineData,minBar,minLine,barName,lineNam
                 min: minLine,
                 max: 1,
                 interval: 5,
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(255,255,255,0.5)'
+                    }
+                }
                 // axisLabel: {
                 //     formatter: '{value} °C'
                 // }
@@ -318,7 +328,20 @@ function supplyTotalTwo(echartId,barData,lineData,minBar,minLine,barName,lineNam
             {
                 name: barName,
                 type: 'bar',
-                data: barData
+                data: barData,
+                barWidth: 18,
+                itemStyle: {
+                    normal: {
+                        barBorderRadius: 4,
+                        color: new echarts.graphic.LinearGradient(
+                            0, 0, 0, 1,
+                            [
+                                {offset: 0, color: '#4A7FE9'},
+                                {offset: 1, color: '#121D55'}
+                            ]
+                        )
+                    }
+                },
             },
             {
                 name: lineName,
@@ -329,5 +352,6 @@ function supplyTotalTwo(echartId,barData,lineData,minBar,minLine,barName,lineNam
         ]
     };
     myChart.setOption(option)
+
 }
 export   {supplyDemandCommon,balanceEchart,supplyTotalOne,supplyTotalTwo}
