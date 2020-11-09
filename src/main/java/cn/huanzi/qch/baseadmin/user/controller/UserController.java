@@ -9,6 +9,7 @@ import cn.huanzi.qch.baseadmin.sys.sysuser.service.SysUserService;
 import cn.huanzi.qch.baseadmin.sys.sysuser.vo.SysUserVo;
 import cn.huanzi.qch.baseadmin.user.service.UserService;
 import cn.huanzi.qch.baseadmin.util.SecurityUtil;
+import cn.huanzi.qch.baseadmin.util.SysSettingUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -36,7 +37,19 @@ public class UserController {
         sysUserVo.setPassword(null);
         return new ModelAndView("user/userinfo", "user", sysUserVo);
     }
+    @GetMapping("systemIntroduce")
+    public ModelAndView systemIntroduce() {
+        ModelAndView modelAndView = new ModelAndView("user/sysintroduce");
 
+        //系统信息
+        modelAndView.addObject("sys", SysSettingUtil.getSysSetting());
+
+        //登录用户
+        SysUserVo sysUserVo = sysUserService.findByLoginName(SecurityUtil.getLoginUser().getUsername()).getData();
+        sysUserVo.setPassword(null);//隐藏部分属性
+        modelAndView.addObject( "loginUser", sysUserVo);
+        return modelAndView;
+    }
     @GetMapping("shortcMenu")
     public ModelAndView shortcMenu() {
         return new ModelAndView("user/shortcMenu");
