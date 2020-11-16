@@ -1,0 +1,196 @@
+.left{
+    float:left;
+}
+.right{
+    float: right;
+}
+.layui-nav-itemed>.layui-nav-child {
+    display: block;
+    padding: 0;
+    background-color: rgb(15, 28, 71)!important;
+}
+.layui-nav-tree .layui-nav-child dd.layui-this, .layui-nav-tree .layui-nav-child dd.layui-this a, .layui-nav-tree .layui-this, .layui-nav-tree .layui-this>a, .layui-nav-tree .layui-this>a:hover {
+    background-color: #0D1639;
+    color: #fff;
+}
+.layui-nav .layui-nav-child dd.layui-this a, .layui-nav-child dd.layui-this {
+    background-color: #0D1639;
+    color: #fff;
+}
+.layui-nav-tree .layui-nav-child, .layui-nav-tree .layui-nav-child a:hover {
+    background: #0D1639;
+    color: #fff;
+}
+.layui-nav-tree .layui-nav-item a:hover {
+    background-color: #0D1639;
+}
+.layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after {
+    background-color: #1A4495!important;
+}
+.layui-tab-title .layui-this {
+    color: #fff;
+}
+.layui-badge-rim, .layui-colla-content, .layui-colla-item, .layui-collapse, .layui-elem-field, .layui-form-pane .layui-form-item[pane], .layui-form-pane .layui-form-label, .layui-input, .layui-layedit, .layui-layedit-tool, .layui-quote-nm, .layui-select, .layui-tab-bar, .layui-tab-card, .layui-tab-title, .layui-tab-title .layui-this:after, .layui-textarea {
+    border-color: #1A4495!important;
+}
+.layui-tab-title {
+    top: -10px;
+}
+.layui-tab-title .layui-this:after {
+    border-width: 0px;
+    border-right: 1px solid;
+}
+.layui-tab-close:hover {
+    border-radius: 2px;
+    background-color: #090F2C!important;
+    cursor: pointer;
+    font-weight: bold;
+    color: #1A4495;
+}
+/****   首页 ****/
+
+.layui-tab-content,.layui-tab{
+    width:100%;
+    height:100%;
+}
+.homeContent{
+    margin:1%;
+    height: 98%;
+    overflow: hidden;
+}
+.homeContent>div{
+    float: left;
+}
+.homeContent>div>div{
+    position: relative;
+    /*background: #0F1C48;*/
+    overflow: hidden;
+    background: rgba(15, 28, 72,1);
+    /*border:1px solid #1A4495;*/
+}
+.homeRight{
+    margin-top:0px;
+    width:32%;
+    height: 100%;
+}
+.homeRight>div,.homeMain>div:nth-child(2){
+    height: 30%;
+}
+.homeRight>div:nth-child(2){
+    margin:1% 0px;
+    /*background-color:red;*/
+}
+.homeMain{
+    margin:0px 0.5%;
+    width:65%;
+    height:100%;
+}
+.homeMain>div:nth-child(1){
+    height:60.5%;
+    margin-bottom:0.8%
+}
+#mainChart{
+    width:90%;
+    height: 90%;
+}
+.positionStyle{
+    position: relative;
+    top:10%;
+    left:5%;
+    width:90%;
+    height: 80%;
+}
+img.positionStyle{
+    top:1%;
+}
+#homeSix.positionStyle{
+    top:0%;
+    left:2%;
+}
+#mainChart.positionStyle{
+    top:3%;
+    /*left:2%;*/
+}
+#mainChartBottomRight,#mainChartBottom{
+    width:45%;
+    height: 80%;
+    float: left;
+    /*margin-bottom:5%;*/
+}
+#clock {
+    font-family: 'Share Tech Mono', monospace;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 0 20px #fff, 0 0 20px rgba(255, 255, 255, 0);
+}
+#clock .time {
+    letter-spacing: 0.05em;
+    font-size: 40px;
+    padding: 5px 0;
+}
+#clock .date {
+    letter-spacing: 0.1em;
+    font-size: 14px;
+}
+.BMap_cpyCtrl {
+    display: none;
+}
+.anchorBL {
+    display: none;
+}
+tq_main {
+    padding: 3% 3% 3% 8%;
+}
+.tq_main .weather {
+    margin-top: 35px;
+}
+.tq_main .weather div {
+    width: 25%;
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+}
+.tq_main .weather .tqimg {
+    width: 19%;
+}
+.tq_main .weather .tqimg img {
+    width: auto;
+    height: 46px;
+    margin: 6px 0 0;
+}
+.tq_main .weather .wd {
+    width: 31%;
+    font-size: 10px;
+    line-height: 20px;
+}
+.tq_main .weather .wd .ds {
+    font-size: 22px;
+    color: #61C3E6;
+    line-height: 40px;
+}
+.tq_main .weather .kqzl {
+    font-size: 12px;
+    line-height: 14px;
+}
+.tq_main .weather .kqzl span {
+    font-size: 32px;
+    color: #61c3e6;
+    line-height: 46px;
+}
+.tq_main .weather .best_right {
+    font-size: 28px;
+    color: #61c3e6;
+}
+.title {
+    line-height: 35px;
+    height: 35px;
+    text-align: center;
+    color: #fff;
+    background: -webkit-gradient(linear, left top, right top, from(rgba(25,56,122, 1)), to(rgba(255, 255, 255, 0)));
+    background: linear-gradient(to right,rgba(255, 255, 255, 0) 0%, rgba(25,56,122, 1) 50%, rgba(255, 255, 255, 0) 100%);
+    text-shadow: 0 0 10px #fff, 0 0 10px rgba(255, 255, 255, 0);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: block;
+    width: 100%;
+}

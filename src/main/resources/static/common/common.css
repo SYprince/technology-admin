@@ -4,5 +4,9 @@ body, html {
     width:100%;
     height: 100%;
     background: #090F2C;
+    /*background-image: url("../common/image/homebg.jpg");*/
+    /*transform: rotate(90deg);*/
+    /*background-repeat: no-repeat;*/
+    /*background-size: cover;*/
     color: rgba(255,255,255,0.6);
 }

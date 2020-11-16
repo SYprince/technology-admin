@@ -8,51 +8,11 @@
     <link rel="shortcut icon" th:href='${sys.sysLogo}' th:mce_href='${sys.sysLogo}' type="image/x-icon">
     <!-- 引入公用部分 -->
     <script th:replace="common/head::static"></script>
-    <style>
-        .layui-nav-itemed>.layui-nav-child {
-            display: block;
-            padding: 0;
-             background-color: rgb(15, 28, 71)!important;
-        }
-        .layui-nav-tree .layui-nav-child dd.layui-this, .layui-nav-tree .layui-nav-child dd.layui-this a, .layui-nav-tree .layui-this, .layui-nav-tree .layui-this>a, .layui-nav-tree .layui-this>a:hover {
-            background-color: #0D1639;
-            color: #fff;
-        }
-        .layui-nav .layui-nav-child dd.layui-this a, .layui-nav-child dd.layui-this {
-            background-color: #0D1639;
-            color: #fff;
-        }
-        .layui-nav-tree .layui-nav-child, .layui-nav-tree .layui-nav-child a:hover {
-            background: #0D1639;
-            color: #fff;
-        }
-        .layui-nav-tree .layui-nav-item a:hover {
-            background-color: #0D1639;
-        }
-        .layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after {
-             background-color: #1A4495!important;
-        }
-        .layui-tab-title .layui-this {
-            color: #fff;
-        }
-        .layui-badge-rim, .layui-colla-content, .layui-colla-item, .layui-collapse, .layui-elem-field, .layui-form-pane .layui-form-item[pane], .layui-form-pane .layui-form-label, .layui-input, .layui-layedit, .layui-layedit-tool, .layui-quote-nm, .layui-select, .layui-tab-bar, .layui-tab-card, .layui-tab-title, .layui-tab-title .layui-this:after, .layui-textarea {
-            border-color: #1A4495!important;
-        }
-        .layui-tab-title {
-            top: -10px;
-        }
-        .layui-tab-title .layui-this:after {
-             border-width: 0px;
-            border-right: 1px solid;
-        }
-        .layui-tab-close:hover {
-            border-radius: 2px;
-            background-color: #090F2C!important;
-            cursor: pointer;
-            font-weight: bold;
-            color: #1A4495;
-        }
-    </style>
+    <link th:href="@{/index.css}" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/common/echarts/dataTool.min.js}" type="text/javascript"></script>
+    <script th:src="@{/common/echarts/china.js}" type="text/javascript"></script>
+    <script th:src="@{/common/echarts/echarts.js}" type="text/javascript"></script>
+<!--    <script th:src="@{/common/echarts/map.js}" type="text/javascript"></script>-->
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -120,20 +80,59 @@
             </ul>
             <!-- 内容 -->
             <div class="layui-tab-content">
-                <div class="layui-tab-item layui-show">
-                   <div class="homeLeft">
-                       <div></div>
-                       <div></div>
-                       <div></div>
-                   </div>
+                <div class="layui-tab-item layui-show homeContent">
+<!--                   <div class="homeLeft">-->
+<!--                       <div>-->
+<!--                           <div id="homeOne"></div>-->
+<!--                       </div>-->
+<!--                       <div></div>-->
+<!--                       <div></div>-->
+<!--                   </div>-->
                    <div class="homeMain">
-                       <div></div>
-                       <div></div>
+                       <div>
+                           <div class="positionStyle" id="mainChart"></div>
+                       </div>
+                       <div>
+                           <div class="title">最大共供应电量概率数据展示</div>
+                           <div  id="mainChartBottom"></div>
+                           <div id="mainChartBottomRight"></div>
+                       </div>
                    </div>
                    <div class="homeRight">
-                       <div></div>
-                       <div></div>
-                       <div></div>
+                       <div>
+                           <div class="title">基本信息</div>
+                           <div class="positionStyle tq_main">
+                               <!--<div id="time"></div>-->
+                               <div id="clock">
+                                   <time class="date" datetime="YYYY MM DD"> 2017-10-10</time>
+                                   <br/>
+                                   <time class="time" datetime="hh:mm:ss">13:09:20</time>
+                               </div>
+                               <div class="weather">
+                                   <div class="tqimg left">
+                                       <img class="left" src="/common/image/tq.png"  alt="" />
+                                   </div>
+                                   <div class="left wd">
+                                       <p class="ds">16~21℃</p >
+                                       <p>多云</p >
+                                       <!--<p>多云</p >-->
+                                   </div>
+                                   <div class="left kqzl">
+                                       <p>空气质量</p >
+                                       <span>15</span>
+                                   </div>
+                                   <div class="right best_right">优</div>
+                               </div>
+                           </div>
+                       </div>
+                       <div>
+                           <div class="title">电力供需总体平衡</div>
+                           <img class="positionStyle" src="common/image/homeFour.jpg" alt="">
+                       </div>
+                       <div>
+                           <div class="title">最大供应能力场景数据展示</div>
+                           <div class="positionStyle" id="homeSix"></div>
+                       </div>
                    </div>
                 </div>
             </div>
@@ -144,6 +143,7 @@
         © 电力电量分析预测系统
     </div>
 </div>
+<script th:src="@{/index.js}" type="module"></script>
 <script th:inline="javascript">
     //获取后端RSA公钥并存到sessionStorage
     sessionStorage.setItem('javaPublicKey', [[${publicKey}]]);
