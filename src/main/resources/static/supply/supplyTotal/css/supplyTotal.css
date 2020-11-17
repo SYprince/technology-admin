@@ -11,6 +11,7 @@ ul li{
     width:44%;
     height:44%;
     margin:1%;
+    padding: 5px 10px;
     /*background: #0F1C47;*/
 }
 ul li span{
@@ -24,11 +25,10 @@ ul li span{
 .supplyTotalContent{
     width: 100%;
     height:100%;
-
     /*background: rgb(12, 40, 67);*/
 }
 .supplyTotalContent div{
-    margin:5%;
+    /*margin:5%;*/
     width:90%;
     height:80%;
     /*background: rgba(40, 86, 139,0.3);*/

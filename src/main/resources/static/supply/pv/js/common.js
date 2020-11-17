@@ -191,7 +191,15 @@ function supplyTotalOne(echartId){
 
     let option = {
         title: {
-            text: '全时段火电机组开机率'
+            text: '全时段火电机组开机率',
+            // textAlign:'center',
+            left:'30%',
+            width:'100%',
+            textStyle:{
+                color:'#ffffff',
+                fontSize: 12,
+
+            },
         },
         xAxis: {
             data: dataAxis,
@@ -276,8 +284,20 @@ function supplyTotalTwo(echartId,barData,lineData,minBar,minLine,barName,lineNam
                 // saveAsImage: {show: true}
             }
         },
+       grid: {
+           left: '15%',
+           top:40,
+           right:5,
+           // bottom:180,
+           // width:'90%',
+           // height:'60%'
+       },
         legend: {
-            data: [ barName, lineName]
+            data: [ barName, lineName],
+            textStyle:{
+                color:'#ffffff',
+                fontSize: 12
+            },
         },
         xAxis: [
             {
@@ -348,7 +368,8 @@ function supplyTotalTwo(echartId,barData,lineData,minBar,minLine,barName,lineNam
                 type: 'line',
                 yAxisIndex: 1,
                 data: lineData
-            }
+            },
+
         ]
     };
     myChart.setOption(option)
@@ -698,12 +719,12 @@ function indexEchartMainBottom(echartId){
             }
         },
         grid: {
-            left: 50,
+            left: '15%',
             top:40,
             right:5,
             // bottom:180,
             width:'90%',
-            height:'68%'
+            height:'60%'
         },
         series: [
             {
@@ -762,12 +783,12 @@ function indexEchartMainBottomRight(echartId){
             trigger: 'item',
         },
         grid: {
-            left: '20%',
+            left: '25%',
             top: '25%',
             right: '10%',
             // bottom: '15%'
             width:'80%',
-            height:'60%'
+            height:'55%'
         },
         xAxis: {
             type: 'category',
