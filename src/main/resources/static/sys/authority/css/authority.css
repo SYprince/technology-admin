@@ -1,6 +1,7 @@
 body {
     padding: 20px;
-    background-color: #F2F2F2;
+    width: 96%;
+    /*background-color: #F2F2F2;*/
 }
 
 .layui-form-label {
@@ -20,4 +21,7 @@ body {
     display: unset;
     margin-right: 10px;
     margin-bottom: 10px;
+}
+iframe body{
+    width: 96%;
 }

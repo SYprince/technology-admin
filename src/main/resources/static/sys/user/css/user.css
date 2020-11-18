@@ -1,6 +1,7 @@
 body {
     padding: 20px;
-    background-color: #F2F2F2;
+    width: 96%;
+    /*background-color: #F2F2F2;*/
 }
 
 .layui-form-label {
@@ -19,4 +20,16 @@ body {
     display: unset;
     width: 100px;
     margin-left: 10px;
+}
+.layui-form-pane .layui-form-label,.layui-input, .layui-select, .layui-textarea {
+     background-color: #0F1C48;
+
+}
+input {
+
+    background-color: #0F1C48!important;
+
+}
+.layui-input:hover, .layui-textarea:hover {
+     border-color: #009788!important;
 }

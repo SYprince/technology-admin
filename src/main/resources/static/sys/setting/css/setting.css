@@ -1,4 +1,17 @@
 body {
     padding: 20px;
-    background-color: #F2F2F2;
+    width: 96%;
+    /*background-color: #F2F2F2;*/
+}
+.layui-input, .layui-select, .layui-textarea {
+    background-color: #0F1C48!important;
+    color: rgba(255,255,255,0.5);
+}
+
+
+
+.layui-form-pane .layui-form-label {
+
+     background-color: #0F1C48!important;
+
 }

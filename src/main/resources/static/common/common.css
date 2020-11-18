@@ -1,7 +1,7 @@
 body, html {
     margin: 0;
     padding: 0;
-    width:100%;
+    width:99%;
     height: 100%;
     background: #090F2C;
     /*background-image: url("../common/image/homebg.jpg");*/
@@ -13,4 +13,61 @@ body, html {
 iframe {
     width: 98%;
     /*height: 90%;*/
+    overflow: hidden;
+}
+iframe body,iframe html{
+    width: 96%;
+}
+.layui-table {
+    width: 100%;
+    background-color: #0F1C48;
+    color: #fff;
+}
+.layui-card-header {
+    border-bottom: 1px solid #1A4495;
+    color: #fff;
+    border-radius: 2px 2px 0 0;
+    font-size: 14px;
+}
+.layui-card {
+    margin-bottom: 15px;
+    border-radius: 2px;
+    background-color: #0F1C48;
+    box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+}
+ .layui-table-header,.layui-table thead tr{
+    background-color: #0F1C48;
+}
+.layui-table tbody tr:hover,  .layui-table-click,.layui-table-hover, .layui-table-mend, .layui-table-patch, .layui-table-tool, .layui-table-total, .layui-table-total tr, .layui-table[lay-even] tr:nth-child(even) {
+    background-color: #1A4495;
+}
+.layui-table td, .layui-table th, .layui-table-col-set, .layui-table-fixed-r, .layui-table-grid-down, .layui-table-header, .layui-table-page, .layui-table-tips-main, .layui-table-tool, .layui-table-total, .layui-table-view, .layui-table[lay-skin=line], .layui-table[lay-skin=row] {
+    border-width: 0px;
+    border-style: solid;
+    border-bottom: 1px solid #1A4495;
+    /* border-color: #e6e6e6; */
+}
+.layui-laypage a, .layui-laypage span {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: middle;
+    padding: 0 15px;
+    height: 28px;
+    line-height: 28px;
+    margin: 0 -1px 5px 0;
+    background-color: #fff;
+    color: #fff;
+    font-size: 12px;
+}
+.layui-badge-rim, .layui-colla-content, .layui-colla-item, .layui-collapse, .layui-elem-field, .layui-form-pane .layui-form-item[pane], .layui-form-pane .layui-form-label, .layui-input, .layui-layedit, .layui-layedit-tool, .layui-quote-nm, .layui-select, .layui-tab-bar, .layui-tab-card, .layui-tab-title, .layui-tab-title .layui-this:after, .layui-textarea {
+    /*border-width: 0px;*/
+    border: 1px solid #1A4495;
+    /*border-color: #1A4495;*/
+}
+.layui-tab-title .layui-this {
+    color: rgba(255,255,255,0.6);;
+}
+.layui-tab-title .layui-this {
+    color: #fff;
 }

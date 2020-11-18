@@ -14,7 +14,11 @@ function supplyDemandCommon(echartUrl,forcastDate,echartId){
                 trigger: 'axis'
             },
             legend: {
-                data: pvForcastTitle
+                data: pvForcastTitle,
+                textStyle:{
+                    color:'#ffffff',
+                    fontSize: 12
+                },
             },
             grid: {
                 top: '50px',
@@ -27,12 +31,22 @@ function supplyDemandCommon(echartUrl,forcastDate,echartId){
                 type: 'category',
                 name: '时段(天)',
                 boundaryGap: false,
-                data: xAxisData
+                data: xAxisData,
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(255,255,255,0.5)'
+                    }
+                }
             },
             yAxis: {
                 type: 'value',
                 name: '发电量(MW)',
                 left: '10px',
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgba(255,255,255,0.5)'
+                    }
+                }
             },
             series: []
         };
@@ -44,9 +58,9 @@ function supplyDemandCommon(echartUrl,forcastDate,echartId){
             lineStyle: {color: 'black'},
             itemStyle: {
                 normal: {
-                    color: "#000000",//折线点的颜色
+                    color: "#C43732",//折线点的颜色
                     lineStyle: {
-                        color: "#000000"//折线的颜色
+                        color: "#C43732"//折线的颜色
                     }
                 }
             }
@@ -59,9 +73,9 @@ function supplyDemandCommon(echartUrl,forcastDate,echartId){
                 lineStyle: {color: 'blue'},
                 itemStyle: {
                     normal: {
-                        color: "#386db3",//折线点的颜色
+                        color: "#659EA9",//折线点的颜色
                         lineStyle: {
-                            color: "#386db3"//折线的颜色
+                            color: "#659EA9"//折线的颜色
                         }
                     }
                 }
@@ -1071,7 +1085,6 @@ function indexEchartFive(echartId){
 }
 function indexEchartMain(echartId){
     let myChart = echarts.init(document.getElementById(echartId));
-    let mapColor='#0F1C48';
     var data = [
         // {name: '海门', value: 12},
         // {name: '鄂尔多斯', value: 12},

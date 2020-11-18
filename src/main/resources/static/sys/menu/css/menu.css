@@ -1,4 +1,20 @@
 body {
     padding: 20px;
-    background-color: #F2F2F2;
+    /*background-color: #F2F2F2;*/
+}
+.layui-tree-txt {
+    color: rgba(255,255,255,0.5) !important;
+}
+input {
+    background-color: #0F1C48!important;
+}
+.layui-input, .layui-select, .layui-textarea {
+    background-color: #0F1C48!important;
+}
+.layui-form-pane .layui-form-label {
+    background-color: #0F1C48!important;
+
+}
+.layui-input:hover, .layui-textarea:hover {
+    border-color: #009788!important;
 }
