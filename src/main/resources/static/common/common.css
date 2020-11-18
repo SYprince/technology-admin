@@ -1,7 +1,7 @@
 body, html {
     margin: 0;
     padding: 0;
-    width:99%;
+    width:100%;
     height: 100%;
     background: #090F2C;
     /*background-image: url("../common/image/homebg.jpg");*/
@@ -80,7 +80,7 @@ body::-webkit-scrollbar {
     /*height: 4px;*/
 }
 .layui-table-body::-webkit-scrollbar{
-    width: 2px;
+    width: 1px;
     /*background-color: rgba(26, 68, 149,1);*/
     /*height: 4px;*/
 }
@@ -94,4 +94,10 @@ body::-webkit-scrollbar-track,.layui-table-body::-webkit-scrollbar-track {
     border-radius: 0;
     background: rgba(9, 15, 44,1);
 
+}
+.layui-tab-bar {
+     background-color: rgba(9, 15, 44,1);
+}
+.layui-col-space15 {
+     margin:0px;
 }
