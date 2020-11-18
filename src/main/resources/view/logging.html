@@ -7,6 +7,24 @@
     <title>实时日志</title>
     <!-- 引入公用部分 -->
     <script th:replace="common/head::static"></script>
+    <style>
+        #loggingText::-webkit-scrollbar {
+            width: 3px;
+            /*background-color: rgba(26, 68, 149,1);*/
+            /*height: 4px;*/
+        }
+        #loggingText::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 5px rgba(26, 68, 149,1);
+            background: rgba(26, 68, 149,1);
+        }
+        #loggingText::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 5px rgb(15, 28, 72);
+            border-radius: 0;
+            background: rgb(15, 28, 72);
+
+        }
+    </style>
 </head>
 <body>
 <!-- 标题 -->
