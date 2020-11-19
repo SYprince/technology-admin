@@ -31,3 +31,9 @@ body::-webkit-scrollbar-track {
     background: rgba(9, 15, 44,1);
 
 }
+input{
+    color:rgba(255,255,255,0.5)
+}
+.layui-input:hover, .layui-textarea:hover {
+    border-color: rgb(0, 151, 136)!important;
+}

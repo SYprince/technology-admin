@@ -101,3 +101,8 @@ body::-webkit-scrollbar-track,.layui-table-body::-webkit-scrollbar-track {
 .layui-col-space15 {
      margin:0px;
 }
+/*.layui-table-box {*/
+/*    position: relative;*/
+/*    height: 600px;*/
+/*    overflow: hidden;*/
+/*}*/
