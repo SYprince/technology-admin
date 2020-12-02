@@ -98,8 +98,8 @@ function balanceEchart(echartId){
             formatter: '{b}',
         },
         dataRange: {
-            x: '100px',
-            y: '50%',
+            x: '80px',
+            y: '60%',
             seriesIndex: [1],
             splitList: [
                 {start: 310, end: 1000,label: '富裕' ,color:'rgba(164, 209, 241,1)'},
