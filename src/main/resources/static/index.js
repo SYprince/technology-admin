@@ -1,11 +1,12 @@
 import * as commonFun from '/supply/pv/js/common.js';
 layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], function () {
-    commonFun.indexEchartMain('mainChart');
+    commonFun.balanceEchart('balanceEchart');
+    //commonFun.indexEchartMain('mainChart');
     let barDataThree=[1994.52155387634,9589.55473908533,13671.8173301793,27091.9309437677,24239.1403860901,27890.8834221160,29757.6044536988,23567.2706829014,21607.7377854437]
     let lineDataThree=[0.0373754227677783,0.115211221699277,0.126390995904631,0.204716259611311,0.157516543562047,0.147574806878884,0.135414115012087,0.101313068030790,0.0875527690492762]
     // commonFun.supplyTotalTwo('homeOne',barDataThree,lineDataThree,0,0,'舍弃电量','弃电率');
-    commonFun.indexEchartMainBottom('mainChartBottom')
-    commonFun.indexEchartMainBottomRight('mainChartBottomRight')
+    //commonFun.indexEchartMainBottom('mainChartBottom')
+    //commonFun.indexEchartMainBottomRight('mainChartBottomRight')
     commonFun.indexEchartFive('homeSix')
     // commonFun.balanceEchart('mainChart');
     function showTime() {
