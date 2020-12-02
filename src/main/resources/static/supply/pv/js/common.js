@@ -212,12 +212,22 @@ function supplyTotalOne(echartId){
             text: '全时段火电机组开机率',
             // textAlign:'center',
             left:'30%',
+            top:'0px',
             width:'100%',
             textStyle:{
                 color:'#ffffff',
                 fontSize: 12,
 
             },
+        },
+        grid: {
+            left: '15%',
+            top:25,
+            right:5,
+            bottom:20
+            // bottom:180,
+            // width:'90%',
+            // height:'60%'
         },
         xAxis: {
             data: dataAxis,
@@ -226,6 +236,11 @@ function supplyTotalOne(echartId){
             },
             axisLine: {
                 show: false
+            },
+            axisLabel: {
+                textStyle: {
+                    color: 'rgba(255,255,255,0.5)'
+                }
             },
             z: 10
         },
@@ -239,7 +254,7 @@ function supplyTotalOne(echartId){
             },
             axisLabel: {
                 textStyle: {
-                    color: '#999'
+                    color: 'rgba(255,255,255,0.5)'
                 }
             }
         },
@@ -293,6 +308,7 @@ function supplyTotalTwo(echartId,barData,lineData,minBar,minLine,barName,lineNam
                     color: '#000'
                 }
             },
+            top:'0px',
         },
         toolbox: {
             feature: {
@@ -304,8 +320,9 @@ function supplyTotalTwo(echartId,barData,lineData,minBar,minLine,barName,lineNam
         },
        grid: {
            left: '15%',
-           top:40,
+           top:25,
            right:5,
+           bottom:20
            // bottom:180,
            // width:'90%',
            // height:'60%'
