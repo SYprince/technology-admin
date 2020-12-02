@@ -308,7 +308,7 @@ function supplyTotalTwo(echartId,barData,lineData,minBar,minLine,barName,lineNam
                     color: '#000'
                 }
             },
-            top:'0px',
+            top:'5px',
         },
         toolbox: {
             feature: {
@@ -320,7 +320,7 @@ function supplyTotalTwo(echartId,barData,lineData,minBar,minLine,barName,lineNam
         },
        grid: {
            left: '15%',
-           top:25,
+           top:30,
            right:5,
            bottom:20
            // bottom:180,
