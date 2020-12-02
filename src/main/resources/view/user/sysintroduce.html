@@ -6,6 +6,11 @@
     <!-- 引入公用部分 -->
     <script th:replace="common/head::static"></script>
     <!-- 样式 -->
+    <style>
+        #detail span{
+            background-color: rgb(15, 28, 72) !important;
+        }
+    </style>
 </head>
 <body>
 <div class="layui-row" style="padding: 20px;background-color: #416279;">
@@ -24,7 +29,7 @@
         <div class="layui-card">
             <div class="layui-card-header">系统公告</div>
             <div class="layui-card-body">
-                <div th:utext="${sys.sysNoticeText}"></div>
+                <div id='detail' th:utext="${sys.sysNoticeText}"></div>
             </div>
         </div>
     </div>
