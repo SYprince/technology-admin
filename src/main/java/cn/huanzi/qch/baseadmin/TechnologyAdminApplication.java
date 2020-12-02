@@ -77,27 +77,6 @@ class IndexController {
     @Autowired
     private SmhpForRRepository smhpForRRepository;
 
-    //@PostConstruct
-    public void contextLoads() {
-        List<SmhpForR> data = smhpForRRepository.findAll();
-
-        System.out.println(data.get(0).getId());
-        String filename = "123水电.csv";
-        String[] headers = {"日期","id","降雨量","电量值","电力值","年中位置","年份"};
-        String rootPath = "E://";
-
-        File file = new File(rootPath + filename);
-
-        try {
-            file.createNewFile();
-            CsvUtil.exportCSV(new FileWriter(file),headers,data);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-
-        }
-
-    }
     /**
      * 端口
      */

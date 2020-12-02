@@ -116,7 +116,7 @@ function balanceEchart(echartId){
                 color: 'rgba(0,0,0,0.4)'
             },
             itemStyle: {
-                borderColor: 'rgba(0, 0, 0, 0.2)'
+                borderColor: 'rgba(0, 0, 0, 2)'
             },
             emphasis:{
                 itemStyle: {

@@ -9,10 +9,15 @@
     <!-- 引入公用部分 -->
     <script th:replace="common/head::static"></script>
     <link th:href="@{/index.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/supply/pv/css/common.css}" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/balance/css/balanceShow.css}" rel="stylesheet" type="text/css"/>
+
     <script th:src="@{/common/echarts/dataTool.min.js}" type="text/javascript"></script>
     <script th:src="@{/common/echarts/china.js}" type="text/javascript"></script>
     <script th:src="@{/common/echarts/echarts.js}" type="text/javascript"></script>
-<!--    <script th:src="@{/common/echarts/map.js}" type="text/javascript"></script>-->
+    <script th:src="@{/index.js}" type="module"></script>
+    <script th:src="@{/balance/js/balanceShow.js}" type="module"></script>
+
 </head>
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
@@ -89,14 +94,16 @@
 <!--                       <div></div>-->
 <!--                   </div>-->
                    <div class="homeMain">
-                       <div>
-                           <div class="positionStyle" id="mainChart"></div>
+                       <div class="balanceContent">
+                           <div id="balanceEchart">
+                           </div>
+                           <!--<div class="positionStyle" id="mainChart"></div>-->
                        </div>
-                       <div>
-                           <div class="title">最大共供应电量概率数据展示</div>
-                           <div  id="mainChartBottom"></div>
-                           <div id="mainChartBottomRight"></div>
-                       </div>
+                       <!--<div>-->
+                           <!--<div class="title">最大共供应电量概率数据展示</div>-->
+                           <!--<div  id="mainChartBottom"></div>-->
+                           <!--<div id="mainChartBottomRight"></div>-->
+                       <!--</div>-->
                    </div>
                    <div class="homeRight">
                        <div>
@@ -113,8 +120,8 @@
                                        <img class="left" src="/common/image/tq.png"  alt="" />
                                    </div>
                                    <div class="left wd">
-                                       <p class="ds">16~21℃</p >
-                                       <p>多云</p >
+                                       <p class="ds">-7~4℃</p >
+                                       <p>晴</p >
                                        <!--<p>多云</p >-->
                                    </div>
                                    <div class="left kqzl">
@@ -125,10 +132,10 @@
                                </div>
                            </div>
                        </div>
-                       <div>
-                           <div class="title">电力供需总体平衡</div>
-                           <img class="positionStyle" src="common/image/homeFour.jpg" alt="">
-                       </div>
+                       <!--<div>-->
+                           <!--<div class="title">电力供需总体平衡</div>-->
+                           <!--<img class="positionStyle" src="common/image/homeFour.jpg" alt="">-->
+                       <!--</div>-->
                        <div>
                            <div class="title">最大供应能力场景数据展示</div>
                            <div class="positionStyle" id="homeSix"></div>
@@ -143,7 +150,7 @@
         © 电力电量分析预测系统
     </div>
 </div>
-<script th:src="@{/index.js}" type="module"></script>
+
 <script th:inline="javascript">
     //获取后端RSA公钥并存到sessionStorage
     sessionStorage.setItem('javaPublicKey', [[${publicKey}]]);

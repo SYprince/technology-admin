@@ -71,10 +71,10 @@
 .homeRight{
     margin-top:0px;
     width:32%;
-    height: 100%;
+    /*height: 100%;*/
 }
 .homeRight>div,.homeMain>div:nth-child(2){
-    height: 30%;
+    /*height: 30%;*/
 }
 .homeRight>div:nth-child(2){
     margin:1% 0px;
@@ -86,7 +86,7 @@
     height:100%;
 }
 .homeMain>div:nth-child(1){
-    height:60.5%;
+    /*height:60.5%;*/
     margin-bottom:0.8%
 }
 #mainChart{

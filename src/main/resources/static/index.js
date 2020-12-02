@@ -1,4 +1,4 @@
-import * as commonFun from '/supply/pv/js/common.js'
+import * as commonFun from '/supply/pv/js/common.js';
 layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], function () {
     commonFun.indexEchartMain('mainChart');
     let barDataThree=[1994.52155387634,9589.55473908533,13671.8173301793,27091.9309437677,24239.1403860901,27890.8834221160,29757.6044536988,23567.2706829014,21607.7377854437]
