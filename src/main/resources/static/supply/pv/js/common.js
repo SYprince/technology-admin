@@ -95,7 +95,7 @@ function balanceEchart(echartId){
         tooltip: {
             trigger: 'item',
             backgroundColor: 'rgba(12, 40, 67,1)',
-            formatter: '{b}'
+            formatter: '{b}',
         },
         dataRange: {
             x: '100px',
@@ -107,6 +107,10 @@ function balanceEchart(echartId){
                 {start: 10, end: 200, label: '偏紧' ,color:'rgba(23, 73, 150,1)'},
                 {end:10, label: '紧张', color: 'rgba(12, 40, 67,1)'},
             ],
+            textStyle:{
+                color:'rgba(255,255,255,0.8)',
+                fontSize: 12
+            }
         },
         geo: {
             map: 'china',
