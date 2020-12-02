@@ -113,6 +113,8 @@ function balanceEchart(echartId){
             }
         },
         geo: {
+            bottom:'20%',
+            top:'20px',
             map: 'china',
             roam: true,
             label: {
