@@ -27,7 +27,7 @@ ul li span{
     height:100%;
     /*background: rgb(12, 40, 67);*/
 }
-.supplyTotalContent div{
+.supplyTotalContent>li>div{
     /*margin:5%;*/
     width:90%;
     height:80%;
