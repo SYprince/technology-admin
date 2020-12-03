@@ -1,4 +1,29 @@
 import * as commonFun from '/supply/pv/js/common.js';
+function showTime() {
+    var show_day = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
+    var time = new Date();
+    var year = time.getFullYear();
+    var month = time.getMonth();
+    var date = time.getDate();
+    var day = time.getDay();
+    var hour = time.getHours();
+    var minutes = time.getMinutes();
+    var second = time.getSeconds();
+
+    month = month + 1;
+    month < 10 ? month = "0" + month : month;
+    date < 10 ? date = "0" + date : date;
+    hour < 10 ? hour = "0" + hour : hour;
+    minutes < 10 ? minutes = "0" + minutes : minutes;
+    second < 10 ? second = "0" + second : second;
+    document.getElementsByTagName("time")[0].innerHTML = year + "-" + month + "-" + date+ " " + show_day[day];
+    document.getElementsByTagName("time")[1].innerHTML = hour + ":" + minutes + ":" + second;
+    // console.log( document.getElementsByTagName("time"));
+}
+showTime();
+setInterval(function(){
+    $('.homeRight').load(showTime())
+}, 1000);
 layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], function () {
     commonFun.balanceEchart('balanceEchart');
     //commonFun.indexEchartMain('mainChart');
@@ -9,30 +34,6 @@ layui.use(['element', 'form', 'table', 'layer', 'laydate', 'tree', 'util'], func
     //commonFun.indexEchartMainBottomRight('mainChartBottomRight')
     commonFun.indexEchartFive('homeSix')
     // commonFun.balanceEchart('mainChart');
-    function showTime() {
-        var show_day = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
-        var time = new Date();
-        var year = time.getFullYear();
-        var month = time.getMonth();
-        var date = time.getDate();
-        var day = time.getDay();
-        var hour = time.getHours();
-        var minutes = time.getMinutes();
-        var second = time.getSeconds();
 
-        month = month + 1;
-        month < 10 ? month = "0" + month : month;
-        date < 10 ? date = "0" + date : date;
-        hour < 10 ? hour = "0" + hour : hour;
-        minutes < 10 ? minutes = "0" + minutes : minutes;
-        second < 10 ? second = "0" + second : second;
-        document.getElementsByTagName("time")[0].innerHTML = year + "-" + month + "-" + date+ " " + show_day[day];
-        document.getElementsByTagName("time")[1].innerHTML = hour + ":" + minutes + ":" + second;
-        // console.log( document.getElementsByTagName("time"));
-
-        // setInterval(showTime(), 1000);
-
-    }
-    showTime();
     // setInterval(showTime(), 1000);
 })
